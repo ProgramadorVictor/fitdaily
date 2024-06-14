@@ -30,7 +30,11 @@ class LoginController extends Controller
             'txtLogin.cpf' => "O CPF digitado é inválido.",
             'txtSenha.required' => "O campo de senha deve ser preenchido."
         ];
-        $req->validate($regras, $feedback);
+        
+        //Esses CPFs exclusivos são gerados pela seeder, usuários para fins de teste.
+        if($req->txtLogin != '999.999.999-99' && $req->txtLogin != '000.000.000-00'){
+            $req->validate($regras, $feedback);
+        }
 
         $usuario = Usuario::where('cpf', $login)->first();
 
@@ -68,7 +72,7 @@ class LoginController extends Controller
     }
     public function logout(){
         Session::forget("usuario");
-        $mensagem = "Volte mais tarde, estamos esperando!";
+        $mensagem = "Aguardamos você novamente, Volte mais tarde, estamos esperando!";
         $classe = "alert-success show";
         return redirect()->route('login', ['mensagem' => $mensagem, 'classe' => $classe]);
     }

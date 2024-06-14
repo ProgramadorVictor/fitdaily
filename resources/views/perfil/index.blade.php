@@ -16,13 +16,13 @@
                     @csrf
                     <div class="d-block">
                         <div class="d-flex justify-content-center">
-                            <btn class="btn border-0 p-0 background-red d-flex justify-content-center icon-foto">
+                            <button type="button" class="btn border-0 p-0 background-red d-flex justify-content-center icon-foto align-items-center">
                                 @if(isset($sessao['perfil_foto']) && $sessao['perfil_foto'] != '')
                                     <img id="foto-perfil" src="{{ asset('storage/'.$sessao['perfil_foto']) }}" class="icon-foto disable">
                                 @else
-                                    <i id="foto-padrao" class="fa fa-user fa-3x text-white d-flex align-items-center disable" aria-hidden="true"></i>
+                                    <i id="foto-padrao" class="fa fa-user fa-3x text-white disable" aria-hidden="true"></i>
                                 @endif
-                            </btn>
+                            </button>
                             <input name="txtImagem" type="file" class="display-none">
                         </div>
                         <div class="col-12 text-center">
@@ -48,20 +48,22 @@
 @endsection
 @section('script')
     <script>
-        $('.icon-foto').on('click', function(){
+        $('button.icon-foto').on('click', function(){
             $('input[name="txtImagem"]').trigger('click');
         });
 
         $('input[name="txtImagem"]').on('change', function(event) {
-            var file = event.target.files[0];
-            if (file) {
-                var url = URL.createObjectURL(file);
+            var arquivo = event.target.files[0];
+            if (arquivo) {
+                var url = URL.createObjectURL(arquivo);
                 if ($('#foto-perfil').length) {
-                    $('btn .icon-foto').attr('src', url);
+                    $('button .icon-foto').attr('src', url);
+                    $('div .icon-foto').attr('src', url);
                 } else {
                     $('.icon-foto').html('<img id="foto-perfil" src="' + url + '" class="icon-foto">');
                 }
             }
         });
+
     </script>
 @endsection

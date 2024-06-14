@@ -1,16 +1,17 @@
 <div class="col-12 d-flex justify-content-end px-2 background-black">
-    {{-- <button  class="btn border-0" type="button">
-        <i class="fa fa-envelope fa-2x text-white" aria-hidden="true"></i>
-    </button> --}}
     <button class="btn border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
         <i class="fa fa-bars fa-2x text-white"></i>
     </button>
     <div class="offcanvas offcanvas-end background-black" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
         <div class="offcanvas-header p-2 d-block">
             <div class="d-flex justify-content-center">
-                <div class="border border-2 border-dark col-3 p-4 background-red d-flex justify-content-center icon-foto">
-                    <i class="fa fa-user fa-2x text-white" aria-hidden="true"></i>
-                </div>
+                <a href="{{route('perfil')}}" id="perfil" class="border-0 p-0 background-red d-flex justify-content-center icon-foto">
+                    @if(isset($sessao['perfil_foto']) && $sessao['perfil_foto'] != '')
+                        <img id="foto-perfil" src="{{ asset('storage/'.$sessao['perfil_foto']) }}" class="icon-foto disable">
+                    @else
+                        <i id="foto-padrao" class="fa fa-user fa-3x text-white d-flex align-items-center disable" aria-hidden="true"></i>
+                    @endif
+                </a>
             </div>
             <div class="col-12 text-center">
                 <p class="text-white d-block"> Olá, Como vai?</p>
