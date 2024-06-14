@@ -25,7 +25,7 @@ Route::post('/cadastro-realizado','App\Http\Controllers\Front\CadastroController
 
 Route::middleware('autenticacao')->group(function(){
     Route::get('/pagina-principal','App\Http\Controllers\Front\PrincipalController@index')->name('tela-principal');
-    Route::get('/perfil','App\Http\Controllers\Front\PrincipalController@perfil')->name('perfil');
+    Route::get('/perfil/{mensagem?}/{classe?}','App\Http\Controllers\Front\PrincipalController@perfil')->name('perfil');
     Route::post('/atualizar-perfil','App\Http\Controllers\Front\UsuarioController@atualizar')->name('atualizar-perfil');
 });
 

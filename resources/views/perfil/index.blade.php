@@ -16,14 +16,14 @@
                     @csrf
                     <div class="d-block">
                         <div class="d-flex justify-content-center">
-                            <button type="button" class="btn border border-2 border-dark p-4 background-red d-flex justify-content-center icon-foto">
+                            <btn class="btn border-0 p-0 background-red d-flex justify-content-center icon-foto">
                                 @if(isset($sessao['perfil_foto']) && $sessao['perfil_foto'] != '')
-                                    <img src="{{ asset('storage/'.$sessao['perfil_foto']) }}" class="icon-foto">
+                                    <img id="foto-perfil" src="{{ asset('storage/'.$sessao['perfil_foto']) }}" class="icon-foto disable">
                                 @else
-                                    <i class="fa fa-user fa-3x text-white" aria-hidden="true"></i>
+                                    <i id="foto-padrao" class="fa fa-user fa-3x text-white d-flex align-items-center disable" aria-hidden="true"></i>
                                 @endif
-                            </button>
-                            <input id="teste" name="txtImagem" type="file" class="display-none">
+                            </btn>
+                            <input name="txtImagem" type="file" class="display-none">
                         </div>
                         <div class="col-12 text-center">
                             <p class="text-white d-block m-b-1"> Olá, Como vai?</p>
@@ -49,7 +49,19 @@
 @section('script')
     <script>
         $('.icon-foto').on('click', function(){
-            $('#teste').trigger('click');
+            $('input[name="txtImagem"]').trigger('click');
+        });
+
+        $('input[name="txtImagem"]').on('change', function(event) {
+            var file = event.target.files[0];
+            if (file) {
+                var url = URL.createObjectURL(file);
+                if ($('#foto-perfil').length) {
+                    $('btn .icon-foto').attr('src', url);
+                } else {
+                    $('.icon-foto').html('<img id="foto-perfil" src="' + url + '" class="icon-foto">');
+                }
+            }
         });
     </script>
 @endsection

@@ -14,9 +14,6 @@ class UsuarioController extends Controller
         $sessao = Session::get('usuario');
         $imagem = $req->file('txtImagem');
 
-
-        // dd($req->all());
-
         $regras = [
             'txtCelular' => 'required|celular_com_ddd',
             'txtEmail' => 'required|email',
@@ -66,8 +63,10 @@ class UsuarioController extends Controller
             ];
             Session::put('usuario', $sessao_atualizada);
             //Fim de atualizar sessão
+            $mensagem = "Perfil atualizado com sucesso";
+            $classe = "alert-success show";
 
-            return redirect()->route('perfil');
+            return redirect()->route('perfil', ['mensagem' => $mensagem, 'classe' => $classe]);
         }catch(QueryException $e){
 
         }

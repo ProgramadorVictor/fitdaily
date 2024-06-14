@@ -40,7 +40,6 @@ class LoginController extends Controller
                 if(!ImagemModel::where('usuario_id', $usuario->id)->first()){
                     $imagem = new ImagemModel();
                     $imagem->usuario_id = $usuario->id;
-                    $imagem->caminho = 'sem imagem';
                     $imagem->save();
                 }
                 $perfil_foto = ImagemModel::where('usuario_id', $usuario->id)->first();
@@ -76,10 +75,20 @@ class LoginController extends Controller
 
     public function recuperarSenha(Request $req){
         $destino = $req->txtEmail;
-        $id = Usuario::where('email', $destino)->first(); $id = $id->id;
-        $usuario = Usuario::find($id);
-        
-        $nome = $usuario->nome .' '. $usuario->sobrenome;
-        Mail::to($destino)->send(new RecuperacaoDeSenha($nome));
+        if(Usuario::where('email', $destino)->first()){
+            $id = Usuario::where('email', $destino)->first(); $id = $id->id;
+            $usuario = Usuario::find($id);
+            
+            $nome = $usuario->nome .' '. $usuario->sobrenome;
+            Mail::to($destino)->send(new RecuperacaoDeSenha($nome));
+            $mensagem = "O email foi enviado com sucesso";
+            $classe = "alert-success show";
+
+            return redirect()->route('login', ['mensagem' => $mensagem, 'classe' => $classe]);
+        }else{
+            $mensagem = "O email não existe no banco de dados";
+            $classe = "alert-danger show";
+            return redirect()->route('login', ['mensagem' => $mensagem, 'classe' => $classe]);
+        }
     }
 }

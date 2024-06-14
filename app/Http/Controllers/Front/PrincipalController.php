@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
-// use Illuminate\Http\Request;
 
 class PrincipalController extends Controller
 {
@@ -12,8 +11,8 @@ class PrincipalController extends Controller
         $sessao = Session::get('usuario');
         return view('principal.index', ['sessao' => $sessao]);
     }
-    public function perfil(){
+    public function perfil($mensagem = null, $classe = null){
         $sessao = Session::get('usuario');
-        return view('perfil.index', ['sessao' => $sessao]);
+        return view('perfil.index', ['mensagem' => $mensagem,'classe' => $classe,'sessao' => $sessao]);
     }
 }
