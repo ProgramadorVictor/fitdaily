@@ -27,5 +27,8 @@ Route::middleware('autenticacao')->group(function(){
     Route::get('/pagina-principal','App\Http\Controllers\Front\PrincipalController@index')->name('tela-principal');
     Route::get('/perfil/{mensagem?}/{classe?}','App\Http\Controllers\Front\PrincipalController@perfil')->name('perfil');
     Route::post('/atualizar-perfil','App\Http\Controllers\Front\UsuarioController@atualizar')->name('atualizar-perfil');
+    Route::get('/financeiro','App\Http\Controllers\Front\FinanceiroController@index')->name('financeiro');
+    Route::get('/extratos','App\Http\Controllers\Front\FinanceiroController@extratos')->name('extratos');
+    Route::get('/planos','App\Http\Controllers\Front\FinanceiroController@planos')->name('planos');
 });
 

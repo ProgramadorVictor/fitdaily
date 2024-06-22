@@ -17,6 +17,7 @@ class UsuarioSeeder extends Seeder
     {
         Usuario::create([
             'id' => 1,
+            'tipo' => 2,
             'nome' => "Mei",
             'sobrenome' => "Mei",
             'email' => "meimei@gmail.com",
@@ -27,6 +28,7 @@ class UsuarioSeeder extends Seeder
         ]);
         Usuario::create([
             'id' => 2,
+            'tipo' => 1,
             'nome' => "Gojo",
             'sobrenome' => "Satoru",
             'email' => "gojosatoru@gmail.com",

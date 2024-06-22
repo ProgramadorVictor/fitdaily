@@ -50,6 +50,7 @@ class LoginController extends Controller
                 $caminho = str_replace('public/', '', $perfil_foto->caminho); 
                 $sessao = [
                     'id' => $usuario->id,
+                    'tipo' => $usuario->tipo,
                     'perfil_foto' => $caminho,
                     'nome' => $usuario->nome,
                     'sobrenome' => $usuario->sobrenome,

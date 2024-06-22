@@ -66,6 +66,7 @@ class UsuarioController extends Controller
     
                 $sessao_atualizada = [
                     'id' => $usuario->id,
+                    'tipo' => $usuario->tipo,
                     'perfil_foto' => $caminho,
                     'nome' => $usuario->nome,
                     'sobrenome' => $usuario->sobrenome,

@@ -197,5 +197,5 @@ return [
     */
 
     'same_site' => 'lax',
-
+    
 ];
