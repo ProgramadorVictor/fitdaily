@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
-use App\Models\ImagemModel;
 use Illuminate\Database\QueryException;
 
 class UsuarioController extends Controller
@@ -27,7 +26,6 @@ class UsuarioController extends Controller
         ];
 
         if($depois != $antes){
-            $imagem = $req->file('txtImagem');
             $regras = [
                 'txtCelular' => 'required|celular_com_ddd',
                 'txtEmail' => 'required|email',
@@ -47,23 +45,11 @@ class UsuarioController extends Controller
                 $usuario->email = $req->txtEmail;
                 $usuario->celular = $req->txtCelular;
                 $usuario->update();
+    
+                $caminho = ImagemController::atualizarImagem($req->file('txtImagem'));
                 
-                if(isset($req->txtImagem)){
-                    $diretorio = 'public/perfil_foto/' . $sessao['id'];
-                    $caminho = $imagem->store($diretorio);
-                    $imagem = ImagemModel::find($usuario->id);
-
-                    if($imagem){
-                        $imagem->caminho = $caminho;
-                        $imagem->update();
-                    }
-                }
-
-                $perfil_foto = ImagemModel::where('usuario_id', $usuario->id)->first();
-                $caminho = str_replace('public/', '', $perfil_foto->caminho); 
-    
                 Session::forget('usuario');
-    
+
                 $sessao_atualizada = [
                     'id' => $usuario->id,
                     'tipo' => $usuario->tipo,

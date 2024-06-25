@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitdaily</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="../../../public/css/style.css">
+</head>
+<style>
+    .modal-border{
+        --bs-modal-inner-border-radius: unset;
+        border-top-left-radius: unset;
+        border-top-right-radius: unset;
+    }
+</style>
+<body class="background-red">
+    <header class="col-12 d-flex justify-content-between px-2 background-black">
+        <button  class="btn border-0" type="button">
+            <i class="fa fa-envelope fa-2x text-white" aria-hidden="true"></i>
+        </button>
+        <button class="btn border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+            <i class="fa fa-bars fa-2x text-white"></i>
+        </button>
+        <div class="offcanvas offcanvas-end background-black" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header p-2 d-block">
+                <div class="d-flex justify-content-center">
+                    <div class="border border-2 border-dark col-3 p-4 background-red d-flex justify-content-center icon-foto">
+                        <i class="fa fa-user fa-2x text-white" aria-hidden="true"></i>
+                    </div>
+                </div>
+                <div class="col-12 text-center">
+                    <p class="text-white d-block fw-bolder">Victor Rocha Andrade</p>
+                    <p class="text-white d-block"> Olá, Como vai?</p>
+                </div>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="p-0 list-unstyled background-black">
+                    <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
+                        <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="../../perfil/index.html">
+                            <p class="col-11 m-0 text-center">PERFIL</p>
+                            <i class="fa fa-user text-white" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
+                        <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="../../financeiro/index.html" >
+                            <p class="col-11 m-0">FINANCEIRO</p>
+                            <i class="fa fa-user text-white" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
+                        <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="../../calendario/index.html">
+                            <p class="col-11 m-0">AGENDA</p>
+                            <i class="fa fa-calendar text-white" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
+                        <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="../../treinos/index.html">
+                            <p class="col-11 m-0">TREINOS</p>
+                            <i class="fa fa-id-card text-white" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
+                        <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="../../instrutor/index.html">
+                            <p class="col-11 m-0">ALUNOS E TREINOS (INSTRUTOR)</p>
+                            <i class="fa fa-id-card text-white" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="p-0 list-unstyled background-black d-flex justify-content-end">
+                    <li class="col-3 border text-center border-2 border-dark mb-3 p-1 background-red fw-bolder btn-border">
+                        <a href="../login/index.html" class="text-white text-decoration-none"><p class="col-12 m-0">SAIR</p></a>
+                    </li>
+                </ul>
+                
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="background-red my-2 ps-2">
+            <a href="../../tela_inicial/index.html" class="text-decoration-none text-white"><i class="fa fa-home" aria-hidden="true"></i> Tela Principal|</a>
+            <a href="../index.html" class="text-decoration-none text-white">Voltar</a>
+        </div>
+        <section>
+            <div class="background-red px-4">
+                <p class="background-black col-12 fw-bolder text-white text-center m-0">TREINO A</p>
+                <div class="col-12">
+                    <button class="col-12 btn background-black text-white p-0 d-flex align-items-center border-radius-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <!-- <img width="50" src="../../../storage/treinos/agachamento-chute-lateral.gif" class="col-2"> -->
+                        <p class="col-12 fw-bolder text-center m-0 ">TREINO AGACHAMENTO DE CHUTE LATERAL</p>
+                    </button>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body border-dark border-2 background-black p-0 border-radius-none">
+                            <div class="d-flex justify-content-center">
+                                <img width="250" src="../../../storage/treinos/agachamento-chute-lateral.gif">
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Série</th>
+                                        <th scope="col">Repetições</th>
+                                        <th scope="col">Carga (Kg)</th>
+                                        <th scope="col">Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>
+                                            <input type="text" class="form-control p-0 border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control p-0 border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </td>
+                                        <td class="d-flex justify-content-center align-items-center p-3">
+                                            <input type="checkbox" name="" id="">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>
+                                            <input type="text" class="form-control p-0 border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control p-0 border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </td>
+                                        <td class="d-flex justify-content-center align-items-center p-3">
+                                            <input type="checkbox" name="" id="">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>
+                                            <input type="text" class="form-control p-0 border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control p-0 border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </td>
+                                        <td class="d-flex justify-content-center align-items-center p-3">
+                                            <input type="checkbox" name="" id="">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn background-red text-white col-12 text-center border border-2 border-dark mb-3 p-1 border-radius-none" value="" id="atualizar">Atualizar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex">
+                    <button id="adicionarA" class="adicionar col-6 btn btn-success fw-bolder text-white rounded-0"><i class="fa fa-1x fa-plus-square" aria-hidden="true"></i></button>
+                    <button id="removerA" class="remover col-6 btn btn-danger fw-bolder text-white rounded-0"><i class="fa fa-minus-square" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="background-red px-4 mt-4">
+                <p class="background-black col-12 fw-bolder text-white text-center m-0">TREINO B</p>
+                <div class="col-12">
+                    <button class="border-0 col-12 btn background-black text-white p-0 d-flex align-items-center border-radius-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample6" aria-expanded="false" aria-controls="collapseExample">
+                        <!-- <img width="50" src="../../../storage/treinos/lunges-para-frente.gif" class="col-2"> -->
+                        <p class="col-12 fw-bolder text-center m-0">LUNGES PARA FRENTE</p>
+                    </button>
+                    <div class="collapse" id="collapseExample6">
+                        <div class="card card-body border-dark border-2 background-black p-0 border-radius-none">
+                            <div class="d-flex justify-content-center">
+                                <img width="250" src="../../../storage/treinos/lunges-para-frente.gif">
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Série</th>
+                                        <th scope="col">Repetições</th>
+                                        <th scope="col">Carga (Kg)</th>
+                                        <th scope="col">Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>
+                                            <input type="text" class="form-control p-0 border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control p-0 border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </td>
+                                        <td class="d-flex justify-content-center align-items-center p-3">
+                                            <input type="checkbox" name="" id="">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>
+                                            <input type="text" class="form-control p-0 border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control p-0 border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </td>
+                                        <td class="d-flex justify-content-center align-items-center p-3">
+                                            <input type="checkbox" name="" id="">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>
+                                            <input type="text" class="form-control p-0 border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control p-0 border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </td>
+                                        <td class="d-flex justify-content-center align-items-center p-3">
+                                            <input type="checkbox" name="" id="">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn background-red text-white col-12 text-center border border-2 border-dark mb-3 p-1 border-radius-none" value="" id="atualizar">Atualizar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex">
+                    <button id="adicionarB" class="adicionar col-6 btn btn-success fw-bolder text-white rounded-0"><i class="fa fa-1x fa-plus-square" aria-hidden="true"></i></button>
+                    <button id="removerB" class="remover col-6 btn btn-danger fw-bolder text-white rounded-0"><i class="fa fa-minus-square" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="background-red px-4 mt-4">
+                <p class="background-black col-12 fw-bolder text-white text-center m-0">TREINO C</p>
+                <div class="col-12">
+                    <button class="border-0 col-12 btn background-black text-white p-0 d-flex align-items-center border-radius-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample7" aria-expanded="false" aria-controls="collapseExample">
+                        <!-- <img width="50" src="../../../storage/treinos/toque-no-calcanhar.gif" class="col-2"> -->
+                        <p class="col-12 fw-bolder text-center m-0">TOQUE NO CALCANHAR</p>
+                    </button>
+                    <div class="collapse" id="collapseExample7">
+                        <div class="card card-body border-dark border-2 background-black p-0 border-radius-none">
+                            <div class="d-flex justify-content-center">
+                                <img width="250" src="../../../storage/treinos/toque-no-calcanhar.gif">
+                            </div>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Série</th>
+                                        <th scope="col">Repetições</th>
+                                        <th scope="col">Carga (Kg)</th>
+                                        <th scope="col">Estado</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>
+                                            <input type="text" class="form-control p-0 border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control p-0 border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </td>
+                                        <td class="d-flex justify-content-center align-items-center p-3">
+                                            <input type="checkbox" name="" id="">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>
+                                            <input type="text" class="form-control p-0 border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control p-0 border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </td>
+                                        <td class="d-flex justify-content-center align-items-center p-3">
+                                            <input type="checkbox" name="" id="">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>
+                                            <input type="text" class="form-control p-0 border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control p-0 border-0" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                                        </td>
+                                        <td class="d-flex justify-content-center align-items-center p-3">
+                                            <input type="checkbox" name="" id="">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <button type="button" class="btn background-red text-white col-12 text-center border border-2 border-dark mb-3 p-1 border-radius-none" value="" id="atualizar">Atualizar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 d-flex">
+                    <button id="adicionarC" class="adicionar col-6 btn btn-success fw-bolder text-white rounded-0"><i class="fa fa-1x fa-plus-square" aria-hidden="true"></i></button>
+                    <button id="removerC" class="remover col-6 btn btn-danger fw-bolder text-white rounded-0"><i class="fa fa-minus-square" aria-hidden="true"></i></button>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- INICIO DA MODAL -->
+    <div id="adicionarModal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between border-0 modal-border background-black">
+                    <h5 class="col-12 modal-title text-white text-center">ADICIONAR TREINO</h5>
+                    <button type="button" class="btn-close p-0 m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body background-black">
+                    <form action="">
+                        <div class="input-group flex-nowrap mb-4">
+                            <select class="form-select rounded-0" aria-label="Default select example">
+                                <option selected></option>
+                                <!-- <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option> -->
+                            </select>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" id="btnEsqueciSenha" class="col-12 btn btn-primary border-2 border-dark background-red btn-border">Adicionar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIM DA MODAL -->
+    <!-- INIDIO DA MODAL -->
+    <div id="removerModal" class="modal fade" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-between border-0 modal-border background-black">
+                    <h5 class="col-12 modal-title text-white text-center">REMOVER TREINO</h5>
+                    <button type="button" class="btn-close p-0 m-0" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body background-black">
+                    <form action="">
+                        <div class="input-group flex-nowrap mb-4">
+                            <select class="form-select rounded-0" aria-label="Default select example">
+                                <option selected></option>
+                                <!-- <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option> -->
+                            </select>
+                        </div>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" id="btnEsqueciSenha" class="col-12 btn btn-primary border-2 border-dark background-red btn-border">Remover</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIM DA MODAL -->
+    <footer>
+    </footer>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script>
+    var adicionarModal = document.querySelector('#adicionarModal');
+    var adicionarTreinos = document.getElementsByClassName("adicionar");
+
+    for (var i = 0; i < adicionarTreinos.length; i++) {
+        adicionarTreinos[i].addEventListener('click', function (event) {
+            var modalInstance = new bootstrap.Modal(adicionarModal);
+            modalInstance.show();
+        });
+    }
+
+    var closeModalBtn = document.querySelector('.btn-close');
+
+    closeModalBtn.addEventListener('click', function () {
+        var modalInstance = new bootstrap.Modal(adicionarModal);
+        modalInstance.hide();
+    });
+
+    var removerModal = document.querySelector('#removerModal');
+    var removerTreinos = document.getElementsByClassName("remover");
+
+    for (var i = 0; i < removerTreinos.length; i++) {
+        removerTreinos[i].addEventListener('click', function (event) {
+            var modalInstance = new bootstrap.Modal(removerModal);
+            modalInstance.show();
+        });
+    }
+
+    var closeModalBtn = document.querySelector('.btn-close');
+    closeModalBtn.addEventListener('click', function () {
+        var modalInstance = new bootstrap.Modal(removerModal);
+        modalInstance.hide();
+    });
+</script>
+</html>

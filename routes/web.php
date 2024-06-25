@@ -24,7 +24,7 @@ Route::get('/cadastro/{mensagem?}/{classe?}','App\Http\Controllers\Front\Cadastr
 Route::post('/cadastro-realizado','App\Http\Controllers\Front\CadastroController@cadastrar')->name('cadastro-realizado');
 
 Route::middleware('autenticacao')->group(function(){
-    Route::get('/pagina-principal','App\Http\Controllers\Front\PrincipalController@index')->name('tela-principal');
+    Route::get('/pagina-principal/{mensagem?}/{classe?}','App\Http\Controllers\Front\PrincipalController@index')->name('tela-principal');
     Route::get('/perfil/{mensagem?}/{classe?}','App\Http\Controllers\Front\PrincipalController@perfil')->name('perfil');
     Route::post('/atualizar-perfil','App\Http\Controllers\Front\UsuarioController@atualizar')->name('atualizar-perfil');
     Route::get('/financeiro','App\Http\Controllers\Front\FinanceiroController@index')->name('financeiro');

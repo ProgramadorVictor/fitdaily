@@ -9,7 +9,8 @@ use App\Mail\RecuperacaoDeSenha;
 use App\Models\Usuario;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-use App\Models\ImagemModel;
+use App\Http\Controllers\Front\ImagemController;
+
 
 class LoginController extends Controller
 {
@@ -41,13 +42,8 @@ class LoginController extends Controller
         if($usuario){
             if(Hash::check($senha, $usuario->senha)){
 
-                if(!ImagemModel::where('usuario_id', $usuario->id)->first()){
-                    $imagem = new ImagemModel();
-                    $imagem->usuario_id = $usuario->id;
-                    $imagem->save();
-                }
-                $perfil_foto = ImagemModel::where('usuario_id', $usuario->id)->first();
-                $caminho = str_replace('public/', '', $perfil_foto->caminho); 
+                $caminho = ImagemController::primeiroLogin($usuario);
+
                 $sessao = [
                     'id' => $usuario->id,
                     'tipo' => $usuario->tipo,
@@ -58,7 +54,11 @@ class LoginController extends Controller
                     'celular' => $usuario->celular,
                 ];
                 Session::put("usuario", $sessao);
-                return redirect()->route('tela-principal');
+
+                $mensagem = "Seja bem-vindo (a), ". $sessao['nome']." ".$sessao['sobrenome'];
+                $classe = "alert-success show";
+
+                return redirect()->route('tela-principal', ['mensagem' => $mensagem, 'classe' => $classe]);
             }else{
                 $mensagem = "Usuario ou senha incorretos.";
                 $classe = "alert-danger show";

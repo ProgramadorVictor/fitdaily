@@ -7,9 +7,9 @@ use Illuminate\Support\Facades\Session;
 
 class PrincipalController extends Controller
 {
-    public function index(){
+    public function index($mensagem = null, $classe = null){
         $sessao = Session::get('usuario');
-        return view('principal.index', ['sessao' => $sessao]);
+        return view('principal.index', ['mensagem' => $mensagem,'classe' => $classe,'sessao' => $sessao]);
     }
     public function perfil($mensagem = null, $classe = null){
         $sessao = Session::get('usuario');
