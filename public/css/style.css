@@ -30,7 +30,7 @@ html body{
 .alert{
     position: fixed;
     z-index: 1000;
-    top: 0rem;
+    top: 2rem;
     right: 1rem;
     left: 1rem;
     text-align: center;

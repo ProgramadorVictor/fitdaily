@@ -3,21 +3,16 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Session;
-
 
 class FinanceiroController extends Controller
 {
     public function index(){
-        $sessao = Session::get('usuario');
-        return view('financeiro.index', ['sessao' => $sessao]);
+        return view('financeiro.index');
     }
     public function extratos(){
-        $sessao = Session::get('usuario');
-        return view('financeiro.extratos.index', ['sessao' => $sessao]);
+        return view('financeiro.extratos.index');
     }
     public function planos(){
-        $sessao = Session::get('usuario');
-        return view('financeiro.planos.index', ['sessao' => $sessao]);
+        return view('financeiro.planos.index');
     }
 }

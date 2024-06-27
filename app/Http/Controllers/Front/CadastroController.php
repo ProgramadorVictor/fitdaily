@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class CadastroController extends Controller
 {
     public function cadastro($mensagem = null, $classe = null){
-        return view('cadastro.index', ['mensagem' => $mensagem, 'classe' => $classe]);
+        return view('cadastro.index')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);  
     }
     public function cadastrar(Request $req){
          //validate cpf não é oficial do laravel, é uma api rest feita por brasileiros, aqui está o site: https://github.com/LaravelLegends/pt-br-validator
@@ -59,11 +59,11 @@ class CadastroController extends Controller
             $usuario->save();
             $mensagem = "Seu cadastro foi realizado com sucesso.";
             $classe = 'alert-success show';
-            return redirect()->route('login', ['mensagem' => $mensagem, 'classe' => $classe]);
+            return redirect()->route('login')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);  
         }catch(QueryException $e){
             $mensagem = "Ocorreu um erro ao realizar o cadastro.";
             $classe = 'alert-danger show';
-            return redirect()->route('cadastro',['mensagem' => $mensagem, 'classe' => $classe]);
+            return redirect()->route('cadastro')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);  
         }
     }
 }

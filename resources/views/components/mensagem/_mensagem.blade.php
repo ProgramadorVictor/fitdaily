@@ -5,8 +5,8 @@
             @break
         @endforeach
     </span>
-@elseif(session('alert'))
-    <span class="alert {{ session('alert')['classe'] }} alert-dismissible fade" role="alert">
-        <p class="fw-bolder p-0 m-0">{{ session('alert')['mensagem'] }}</p>
+@else   
+    <span class="alert {{isset($classe) ? $classe : ''}} alert-dismissible fade" role="alert">
+        <p class="fw-bolder p-0 m-0">{{isset($mensagem) ? $mensagem : ''}}</p>
     </span>
 @endif

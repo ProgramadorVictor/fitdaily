@@ -1,5 +1,5 @@
 @extends('template.login')
-@section('tittle', 'Cadastro')
+@section('titulo', 'Cadastro')
 @section('body')
     <section class="col-12 d-flex justify-content-center px-2 px-md-0">
         <div class="col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-4 d-flex justify-content-center my-5 py-3 px-0 mx-2 border border-1 border-dark flex-wrap background-black">
@@ -43,8 +43,8 @@
                     </form>
                 </div>
             </div>
-            <div class="col-10 d-flex justify-content-end d-block">
-                <a href="{{route('login')}}" class="text-cyan">Já tem uma conta?</a>
+            <div class="col-12 px-2 d-flex justify-content-end d-block">
+                <a href="{{route('login')}}" class="text-cyan">Você já tem uma conta? Faça login aqui!</a>
             </div>
         </div>
     </section>

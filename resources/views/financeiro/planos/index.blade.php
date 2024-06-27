@@ -1,8 +1,9 @@
 @extends('template.front')
-@section('tittle', 'Perfil')
+@section('titulo', 'Perfil')
 @section('body')
-    <div class="background-black my-2 ps-2">
-        <a href="{{route('tela-principal')}}" class="text-decoration-none text-white"><i class="fa fa-home" aria-hidden="true"></i> Tela Principal</a>
+    <div class="background-black px-2">
+        <a href="{{route('tela-principal')}}" class="text-decoration-none text-white"> <i class="fa fa-home" aria-hidden="true"></i> Tela Principal</a>
+        <a href="{{route('financeiro')}}" class="text-decoration-none text-white">| <i class="fa fa-credit-card" aria-hidden="true"></i> Financeiro</a>
     </div>
     <section class="col-12 d-flex justify-content-center px-2 px-md-0">
         <div id="carouselExampleInterval" class="carousel slide my-5 mx-5 col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-4" data-bs-ride="carousel">
@@ -10,7 +11,7 @@
                 <div class="carousel-item active" data-bs-interval="2000">
                     <div class="text-white text-center fw-bolder fs-4 background-black">Mensal</div>
                     <p class="fs-1 text-white text-center">
-                        R$ 60,99
+                        R$ 100,00
                     </p>
                     <div>
                         <ul class="text-white fs-5 list-unstyled m-5 text-center">
@@ -26,13 +27,15 @@
                 <div class="carousel-item" data-bs-interval="2000">
                     <div class="text-white text-center fw-bolder fs-4 background-black">Trimestral</div>
                     <p class="fs-1 text-white text-center">
-                        R$ 90,99
+                        R$ 255,00 
                     </p>
                     <div>
                         <ul class="text-white fs-5 list-unstyled m-5 text-center">
                             <li>Assinatura de Três Meses</li>
                             <hr class="my-1">
                             <li>Acesso Total Academia</li>
+                            <hr class="my-1">
+                            <li>R$ 100,00 x 3 com desconto de 15%</li>
                         </ul>
                     </div>
                     <div class="d-flex justify-content-center mb-2">
@@ -42,13 +45,15 @@
                 <div class="carousel-item" data-bs-interval="2000">
                     <div class="text-white text-center fw-bolder fs-4 background-black">Anual</div>
                     <p class="fs-1 text-white text-center">
-                        R$ 120,99
+                        R$ 960,00
                     </p>
                     <div>
                         <ul class="text-white fs-5 list-unstyled m-5 text-center">
                             <li>Assinatura de Doze Meses</li>
                             <hr class="my-1">
                             <li>Acesso Total Academia</li>
+                            <hr class="my-1">
+                            <li>R$ 100,00 x 12 com desconto de 20%</li>
                         </ul>
                     </div>
                     <div class="d-flex justify-content-center mb-2">

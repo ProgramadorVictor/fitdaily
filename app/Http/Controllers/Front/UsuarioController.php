@@ -5,22 +5,21 @@ namespace App\Http\Controllers\Front;
 use App\Http\Controllers\Controller;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Session;
 
 class UsuarioController extends Controller
 {
     public function atualizar(Request $req){
-
-        $sessao = Session::get('usuario');
+        
         $antes = [
-            'perfil_foto' => $sessao['perfil_foto'],
-            'email' => $sessao['email'],
-            'celular' => $sessao['celular']
+            'perfil_foto' => session('usuario')['perfil_foto'],
+            'email' => session('usuario')['email'],
+            'celular' => session('usuario')['celular']
         ];
 
         $depois = [
-            'perfil_foto' => ($req->txtImagem == null ? $sessao['perfil_foto'] : $req->txtImagem),
+            'perfil_foto' => ($req->txtImagem == null ? session('usuario')['perfil_foto'] : $req->txtImagem),
             'email' => $req->txtEmail,
             'celular' => $req->txtCelular
         ];
@@ -40,14 +39,14 @@ class UsuarioController extends Controller
             ];
             $req->validate($regras, $feedback);
             try{
-                $usuario = Usuario::find($sessao['id']);
+                $usuario = Usuario::find(session('usuario')['id']);
 
                 $usuario->email = $req->txtEmail;
                 $usuario->celular = $req->txtCelular;
                 $usuario->update();
-    
+
                 $caminho = ImagemController::atualizarImagem($req->file('txtImagem'));
-                
+
                 Session::forget('usuario');
 
                 $sessao_atualizada = [
@@ -59,23 +58,24 @@ class UsuarioController extends Controller
                     'email' => $req->txtEmail,
                     'celular' => $req->txtCelular,
                 ];
+
                 Session::put('usuario', $sessao_atualizada);
 
                 $mensagem = "Perfil atualizado com sucesso";
                 $classe = "alert-success show";
     
-                return redirect()->route('perfil', ['mensagem' => $mensagem, 'classe' => $classe]);
+                return redirect()->route('perfil')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);
             }catch(QueryException $e){
                 $mensagem = "Ocorreu um erro";
                 $classe = "alert-danger show";
 
-                return redirect()->route('perfil', ['mensagem' => $mensagem, 'classe' => $classe]);
+                return redirect()->route('perfil')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);
             }
         }else{
             $mensagem = "Não ocorreu nenhuma alteração";
             $classe = "alert-warning show";
 
-            return redirect()->route('perfil', ['mensagem' => $mensagem, 'classe' => $classe]);
+            return redirect()->route('perfil')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);
         }
     }
 }

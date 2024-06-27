@@ -16,7 +16,7 @@ class LoginController extends Controller
 {
     public function login($mensagem = null, $classe = null){
 
-        return view('login.index', ['mensagem' => $mensagem, 'classe' => $classe]);
+        return view('login.index')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);  
     }
     public function logar(Request $req){
         $login = $req->txtLogin;
@@ -53,21 +53,22 @@ class LoginController extends Controller
                     'email' => $usuario->email,
                     'celular' => $usuario->celular,
                 ];
+
                 Session::put("usuario", $sessao);
 
-                $mensagem = "Seja bem-vindo (a), ". $sessao['nome']." ".$sessao['sobrenome'];
+                $mensagem = "Seja bem-vindo (a), ". session('usuario')['nome']." ".session('usuario')['sobrenome'];
                 $classe = "alert-success show";
 
-                return redirect()->route('tela-principal', ['mensagem' => $mensagem, 'classe' => $classe]);
+                return redirect()->route('tela-principal')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);  
             }else{
                 $mensagem = "Usuario ou senha incorretos.";
                 $classe = "alert-danger show";
-                return redirect()->route('login', ['mensagem' => $mensagem, 'classe' => $classe]);
+                return redirect()->route('login')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);
             }
         }else{
             $mensagem = "Usuario ou senha incorretos.";
             $classe = "alert-danger show";
-            return redirect()->route('login', ['mensagem' => $mensagem, 'classe' => $classe]);
+            return redirect()->route('login')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);
         }
 
     }
@@ -75,7 +76,7 @@ class LoginController extends Controller
         Session::forget("usuario");
         $mensagem = "Aguardamos você novamente, Volte mais tarde, estamos esperando!";
         $classe = "alert-success show";
-        return redirect()->route('login', ['mensagem' => $mensagem, 'classe' => $classe]);
+        return redirect()->route('login')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);  
     }
 
     public function recuperarSenha(Request $req){
@@ -89,11 +90,11 @@ class LoginController extends Controller
             $mensagem = "O email foi enviado com sucesso";
             $classe = "alert-success show";
 
-            return redirect()->route('login', ['mensagem' => $mensagem, 'classe' => $classe]);
+            return redirect()->route('login')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);  
         }else{
             $mensagem = "O email não existe no banco de dados";
             $classe = "alert-danger show";
-            return redirect()->route('login', ['mensagem' => $mensagem, 'classe' => $classe]);
+            return redirect()->route('login')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);  
         }
     }
 }

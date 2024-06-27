@@ -6,8 +6,8 @@
         <div class="offcanvas-header p-2 d-block">
             <div class="d-flex justify-content-center">
                 <a href="{{route('perfil')}}" id="perfil" class="border-0 p-0 background-red d-flex justify-content-center icon-foto">
-                    @if(isset($sessao['perfil_foto']) && $sessao['perfil_foto'] != '')
-                        <img id="foto-perfil" src="{{ asset('storage/'.$sessao['perfil_foto']) }}" class="icon-foto disable">
+                    @if(isset(session('usuario')['perfil_foto']) && session('usuario')['perfil_foto'] != '')
+                        <img id="foto-perfil" src="{{ asset('storage/'.session('usuario')['perfil_foto']) }}" class="icon-foto disable">
                     @else
                         <i id="foto-padrao" class="fa fa-user fa-3x text-white d-flex align-items-center disable" aria-hidden="true"></i>
                     @endif
@@ -15,7 +15,7 @@
             </div>
             <div class="col-12 text-center">
                 <p class="text-white d-block"> Olá, Como vai?</p>
-                <p class="text-white d-block fw-bolder">{{$sessao['nome'].' '.$sessao['sobrenome']}}</p>
+                <p class="text-white d-block fw-bolder">{{session('usuario')['nome'].' '.session('usuario')['sobrenome']}}</p>
             </div>
         </div>
         <div class="offcanvas-body">
@@ -29,7 +29,7 @@
                 <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
                     <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="{{route('financeiro')}}" >
                         <p class="col-11 m-0">FINANCEIRO</p>
-                        <i class="fa fa-user text-white" aria-hidden="true"></i>
+                        <i class="fa fa-credit-card" aria-hidden="true"></i>
                     </a>
                 </li>
                 <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
@@ -44,7 +44,7 @@
                         <i class="fa fa-id-card text-white" aria-hidden="true"></i>
                     </a>
                 </li>
-                @if($sessao['tipo'] == 2)
+                @if(session('usuario')['tipo'] == 2)
                     <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
                         <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="../../instrutor/index.html">
                             <p class="col-11 m-0">ALUNOS E TREINOS</p>

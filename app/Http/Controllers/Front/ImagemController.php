@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\Imagem;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class ImagemController extends Controller
@@ -21,33 +20,38 @@ class ImagemController extends Controller
         return $caminho;
     }
     public static function atualizarImagem($imagem){
-        $sessao = Session::get('usuario');
-        $extensao = $imagem->getClientOriginalExtension();
-        $imagem_nome = $sessao['id'] . '.' . $extensao;
 
-        if(isset($imagem)){
-            $diretorio = 'public/perfil_foto';
+        if($imagem != null){
+            $extensao = $imagem->getClientOriginalExtension();
+            $imagem_nome = session('usuario')['id'] . '.' . $extensao;
 
-            $imagens_storage = Storage::files($diretorio);
+            if(isset($imagem)){
+                $diretorio = 'public/perfil_foto';
 
-            foreach ($imagens_storage as $imagens) {
-                if (strpos($imagens, $sessao['id'] . '.') !== false) {
-                    Storage::delete($imagens);
+                $imagens_storage = Storage::files($diretorio);
+
+                foreach ($imagens_storage as $imagens) {
+                    if (strpos($imagens, session('usuario')['id'] . '.') !== false) {
+                        Storage::delete($imagens);
+                    }
                 }
+
+                $caminho = $imagem->storeAs($diretorio, $imagem_nome);
+                $imagem = Imagem::find(session('usuario')['id']);
+                
+                if($imagem){
+                    $imagem->caminho = $caminho;
+                    $imagem->update();
+                }
+
             }
 
-            $caminho = $imagem->storeAs($diretorio, $imagem_nome);
-            $imagem = Imagem::find($sessao['id']);
-            
-            if($imagem){
-                $imagem->caminho = $caminho;
-                $imagem->update();
-            }
+            $perfil_foto = Imagem::where('usuario_id', session('usuario')['id'])->first();
 
+            return $caminho = str_replace('public/', '', $perfil_foto->caminho); 
+        }else{
+            $perfil_foto = Imagem::where('usuario_id', session('usuario')['id'])->first();
+            return $caminho = str_replace('public/', '', $perfil_foto->caminho); 
         }
-
-        $perfil_foto = Imagem::where('usuario_id', $sessao['id'])->first();
-
-        return $caminho = str_replace('public/', '', $perfil_foto->caminho); 
     }
 }

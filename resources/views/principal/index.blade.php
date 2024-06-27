@@ -1,5 +1,5 @@
 @extends('template.front')
-@section('tittle', 'Principal')
+@section('titulo', 'Principal')
 @section('body')
     <section>
         

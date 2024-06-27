@@ -3,16 +3,13 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Session;
 
 class PrincipalController extends Controller
 {
     public function index($mensagem = null, $classe = null){
-        $sessao = Session::get('usuario');
-        return view('principal.index', ['mensagem' => $mensagem,'classe' => $classe,'sessao' => $sessao]);
+        return view('principal.index')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);
     }
     public function perfil($mensagem = null, $classe = null){
-        $sessao = Session::get('usuario');
-        return view('perfil.index', ['mensagem' => $mensagem,'classe' => $classe,'sessao' => $sessao]);
+        return view('perfil.index')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);
     }
 }

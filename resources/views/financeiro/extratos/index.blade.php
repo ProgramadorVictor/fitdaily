@@ -1,8 +1,9 @@
 @extends('template.front')
-@section('tittle', 'Perfil')
+@section('titulo', 'Perfil')
 @section('body')
-    <div class="background-black my-2 ps-2">
-        <a href="{{route('tela-principal')}}" class="text-decoration-none text-white"><i class="fa fa-home" aria-hidden="true"></i> Tela Principal</a>
+    <div class="background-black px-2">
+        <a href="{{route('tela-principal')}}" class="text-decoration-none text-white"> <i class="fa fa-home" aria-hidden="true"></i> Tela Principal</a>
+        <a href="{{route('financeiro')}}" class="text-decoration-none text-white">| <i class="fa fa-credit-card" aria-hidden="true"></i> Financeiro</a>
     </div>
     <section class="col-12 d-flex justify-content-center px-2 px-md-0">
         <div class="col-10">
