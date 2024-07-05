@@ -1,80 +1,10 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fitdaily</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="../../public/css/style.css">
-</head>
-<body class="background-red">
-    <header class="col-12 d-flex justify-content-between px-2 background-black">
-        <button  class="btn border-0" type="button">
-            <i class="fa fa-envelope fa-2x text-white" aria-hidden="true"></i>
-        </button>
-        <button class="btn border-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-            <i class="fa fa-bars fa-2x text-white"></i>
-        </button>
-        <div class="offcanvas offcanvas-end background-black" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-            <div class="offcanvas-header p-2 d-block">
-                <div class="d-flex justify-content-center">
-                    <div class="border border-2 border-dark col-3 p-4 background-red d-flex justify-content-center icon-foto">
-                        <i class="fa fa-user fa-2x text-white" aria-hidden="true"></i>
-                    </div>
-                </div>
-                <div class="col-12 text-center">
-                    <p class="text-white d-block fw-bolder">Victor Rocha Andrade</p>
-                    <p class="text-white d-block"> Olá, Como vai?</p>
-                </div>
-            </div>
-            <div class="offcanvas-body">
-                <ul class="p-0 list-unstyled background-black">
-                    <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
-                        <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="../perfil/index.html">
-                            <p class="col-11 m-0 text-center">PERFIL</p>
-                            <i class="fa fa-user text-white" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                    <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
-                        <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="../financeiro/index.html" >
-                            <p class="col-11 m-0">FINANCEIRO</p>
-                            <i class="fa fa-user text-white" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                    <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
-                        <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="../calendario/index.html">
-                            <p class="col-11 m-0">AGENDA</p>
-                            <i class="fa fa-calendar text-white" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                    <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
-                        <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="../treinos/index.html">
-                            <p class="col-11 m-0">TREINOS</p>
-                            <i class="fa fa-id-card text-white" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                    <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
-                        <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="../instrutor/index.html">
-                            <p class="col-11 m-0">ALUNOS E TREINOS (INSTRUTOR)</p>
-                            <i class="fa fa-id-card text-white" aria-hidden="true"></i>
-                        </a>
-                    </li>
-                </ul>
-                <ul class="p-0 list-unstyled background-black d-flex justify-content-end">
-                    <li class="col-3 border text-center border-2 border-dark mb-3 p-1 background-red fw-bolder btn-border">
-                        <a href="../login/index.html" class="text-white text-decoration-none"><p class="col-12 m-0">SAIR</p></a>
-                    </li>
-                </ul>
-                
-            </div>
-        </div>
-    </header>
-    <main>
+@extends('template.front')
+@section('titulo', 'Principal')
+@section('body')
+    <section>
         <div class="background-red my-2 ps-2">
             <a href="../tela_inicial/index.html" class="text-decoration-none text-white"><i class="fa fa-home" aria-hidden="true"></i> Tela Principal|</a>
         </div>
-        <section>
             <div class="background-red px-4">
                 <div class="col-12">
                     <button class="col-12 btn background-black text-white p-0 d-flex align-items-center border-radius-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -511,12 +441,7 @@
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
-    <footer>
-    </footer>
-</body>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<script>
-</script>
-</html>
+    </section>
+@endsection
+@section('script')
+@endsection

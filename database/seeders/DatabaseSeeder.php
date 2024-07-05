@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-// use Database\Seeders\UsuarioSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,6 +16,6 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call(UsuarioSeeder::class);
         $this->call(TipoSeeder::class);
-
+        $this->call(AssinaturaSeeder::class);
     }
 }

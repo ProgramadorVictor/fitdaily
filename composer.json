@@ -12,7 +12,8 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravellegends/pt-br-validator": "^11.0",
-        "mailgun/mailgun-php": "^4.2"
+        "mailgun/mailgun-php": "^4.2",
+        "mercadopago/dx-php": "^2.6"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

@@ -26,9 +26,20 @@ Route::post('/cadastro-realizado','App\Http\Controllers\Front\CadastroController
 Route::middleware('autenticacao')->group(function(){
     Route::get('/pagina-principal','App\Http\Controllers\Front\PrincipalController@index')->name('tela-principal');
     Route::get('/perfil','App\Http\Controllers\Front\PrincipalController@perfil')->name('perfil');
+    Route::get('/treinos','App\Http\Controllers\Front\PrincipalController@treinos')->name('treinos');
+
     Route::post('/atualizar-perfil','App\Http\Controllers\Front\UsuarioController@atualizar')->name('atualizar-perfil');
+
     Route::get('/financeiro','App\Http\Controllers\Front\FinanceiroController@index')->name('financeiro');
     Route::get('/extratos','App\Http\Controllers\Front\FinanceiroController@extratos')->name('extratos');
     Route::get('/planos','App\Http\Controllers\Front\FinanceiroController@planos')->name('planos');
+
+
+    Route::post('/pagamento', 'App\Http\Controllers\Front\PagamentoController@realizarPagamento')->name('pagamento');
+    Route::get('/pagamento-sucesso', 'App\Http\Controllers\Front\PagamentoController@success')->name('pagamento-sucesso');
+
+
+
+
 });
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Extrato;
 
 class FinanceiroController extends Controller
 {
@@ -10,7 +11,8 @@ class FinanceiroController extends Controller
         return view('financeiro.index');
     }
     public function extratos(){
-        return view('financeiro.extratos.index');
+        $extratos = Extrato::where('usuario_id', session('usuario')['id'])->orderBy('created_at', 'desc')->get();
+        return view('financeiro.extratos.index', ['extratos' => $extratos]);
     }
     public function planos(){
         return view('financeiro.planos.index');

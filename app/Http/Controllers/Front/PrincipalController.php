@@ -12,4 +12,7 @@ class PrincipalController extends Controller
     public function perfil($mensagem = null, $classe = null){
         return view('perfil.index')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);
     }
+    public function treinos($mensagem = null, $classe = null){
+        return view('treinos.index')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);
+    }
 }

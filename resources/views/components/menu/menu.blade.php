@@ -33,15 +33,15 @@
                     </a>
                 </li>
                 <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
-                    <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="../../calendario/index.html">
-                        <p class="col-11 m-0">AGENDA</p>
-                        <i class="fa fa-calendar text-white" aria-hidden="true"></i>
+                    <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="{{route('treinos')}}">
+                        <p class="col-11 m-0">TREINOS</p>
+                        <i class="fa fa-id-card text-white" aria-hidden="true"></i>
                     </a>
                 </li>
                 <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
-                    <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="../../treinos/index.html">
-                        <p class="col-11 m-0">TREINOS</p>
-                        <i class="fa fa-id-card text-white" aria-hidden="true"></i>
+                    <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="../../calendario/index.html">
+                        <p class="col-11 m-0">AGENDA</p>
+                        <i class="fa fa-calendar text-white" aria-hidden="true"></i>
                     </a>
                 </li>
                 @if(session('usuario')['tipo'] == 2)
