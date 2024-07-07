@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAssinaturasTable extends Migration
+class CreateTipoDeUsuariosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateAssinaturasTable extends Migration
      */
     public function up()
     {
-        Schema::create('assinaturas', function (Blueprint $table) {
+        Schema::create('tipo_de_usuarios', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo'); 
-            $table->decimal('valor', 10, 2);
+            $table->string('tipo_de_conta', 25);
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateAssinaturasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('assinaturas');
+        Schema::dropIfExists('tipo_de_usuarios');
     }
 }

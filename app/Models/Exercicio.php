@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tipo extends Model
+class Exercicio extends Model
 {
     use HasFactory;
-    protected $table = 'tipo_de_usuarios';
-    protected $fillable = ['tipo_de_conta'];
+    protected $table = 'exercicios';
+    protected $fillable = ['caminho','nome'];
 }

@@ -38,20 +38,20 @@
                         <i class="fa fa-id-card text-white" aria-hidden="true"></i>
                     </a>
                 </li>
-                <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
-                    <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="../../calendario/index.html">
+                {{-- <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
+                    <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="{{route('agenda')}}">
                         <p class="col-11 m-0">AGENDA</p>
                         <i class="fa fa-calendar text-white" aria-hidden="true"></i>
                     </a>
-                </li>
-                @if(session('usuario')['tipo'] == 2)
+                </li> --}}
+                {{-- @if(session('usuario')['tipo_de_conta'] == 2)
                     <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
                         <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="../../instrutor/index.html">
                             <p class="col-11 m-0">ALUNOS E TREINOS</p>
                             <i class="fa fa-id-card text-white" aria-hidden="true"></i>
                         </a>
                     </li>
-                @endif
+                @endif --}}
             </ul>
             <ul class="p-0 list-unstyled background-black d-flex justify-content-end">
                 <li class="col-3 border text-center border-2 border-dark mb-3 p-1 background-red fw-bolder btn-border">

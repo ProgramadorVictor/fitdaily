@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Pagamento;
 use App\Models\Usuario;
 use App\Models\Extrato;
-use MercadoPago\Payment;
+// use MercadoPago\Payment;
 use Illuminate\Support\Carbon;
 
 class PagamentoController extends Controller
@@ -80,14 +80,14 @@ class PagamentoController extends Controller
             $data_fim_academia = $data_inicio_academia->copy()->addDays(365);
         }
 
-        $payment = Payment::find_by_id($dados['identificador']);
+        // $payment = Payment::find_by_id($dados['identificador']);
     
         if (isset($data_fim_academia)) {
             $extrato = [
                 'pagamento_id' => $pagamento->id,
                 'assinatura_id' => session('assinatura'),
                 'usuario_id' => session('usuario')['id'],
-                'valor' =>  $payment->transaction_amount,
+                // 'valor' =>  $payment->transaction_amount,
                 'data_pagamento' => now(),
                 'data_vencimento' => $data_fim_academia,
             ];

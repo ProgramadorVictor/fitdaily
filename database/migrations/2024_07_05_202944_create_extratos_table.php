@@ -17,7 +17,6 @@ class CreateExtratosTable extends Migration
             $table->unsignedBigInteger('pagamento_id');
             $table->unsignedBigInteger('assinatura_id');
             $table->unsignedBigInteger('usuario_id');
-            $table->decimal('valor', 10, 2);
             $table->timestamp('data_pagamento')->nullable();
             $table->timestamp('data_vencimento')->nullable();
             $table->timestamps();

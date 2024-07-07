@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUsuarioImagensTable extends Migration
+class CreateTreinosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,13 @@ class CreateUsuarioImagensTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuario_imagens', function (Blueprint $table) {
+        Schema::create('treinos', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('usuario_id');
-            $table->string('caminho')->nullable();
+            $table->json('treino');
+            // $table->json('a');
+            // $table->json('b');
+            // $table->json('c');
             $table->timestamps();
 
             $table->foreign('usuario_id')->references('id')->on('usuarios');
@@ -29,6 +33,6 @@ class CreateUsuarioImagensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuario_imagens');
+        Schema::dropIfExists('treinos');
     }
 }

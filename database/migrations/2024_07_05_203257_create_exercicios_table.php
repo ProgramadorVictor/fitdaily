@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTipoDeUsuariosTable extends Migration
+class CreateExerciciosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateTipoDeUsuariosTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_de_usuarios', function (Blueprint $table) {
+        Schema::create('exercicios', function (Blueprint $table) {
             $table->id();
-            $table->string('funcao', 25);
+            $table->string('caminho');
+            $table->string('nome');
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateTipoDeUsuariosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tipo_de_usuarios');
+        Schema::dropIfExists('exercicios');
     }
 }

@@ -51,7 +51,7 @@ class UsuarioController extends Controller
 
                 $sessao_atualizada = [
                     'id' => $usuario->id,
-                    'tipo' => $usuario->tipo,
+                    'tipo_de_conta' => $usuario->tipo_de_conta_id,
                     'perfil_foto' => $caminho,
                     'nome' => $usuario->nome,
                     'sobrenome' => $usuario->sobrenome,

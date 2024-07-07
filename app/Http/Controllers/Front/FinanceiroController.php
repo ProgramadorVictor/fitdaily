@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
+use App\Models\Assinatura;
 use App\Models\Extrato;
 
 class FinanceiroController extends Controller
@@ -15,6 +16,7 @@ class FinanceiroController extends Controller
         return view('financeiro.extratos.index', ['extratos' => $extratos]);
     }
     public function planos(){
-        return view('financeiro.planos.index');
+        $assinaturas = Assinatura::all();
+        return view('financeiro.planos.index', ['assinaturas' => $assinaturas]);
     }
 }

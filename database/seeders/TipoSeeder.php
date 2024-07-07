@@ -16,11 +16,11 @@ class TipoSeeder extends Seeder
     {
         Tipo::create([
             'id' => 1,
-            'funcao' => 'Aluno'
+            'tipo_de_conta' => 'Aluno'
         ]);
         Tipo::create([
             'id' => 2,
-            'funcao' => 'Treinador'
+            'tipo_de_conta' => 'Treinador'
         ]);
     }
 }

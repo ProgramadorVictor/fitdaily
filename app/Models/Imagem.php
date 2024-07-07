@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Imagem extends Model
 {
     use HasFactory;
-    protected $table = 'usuario_imagens';
+    protected $table = 'imagem_de_usuarios';
     protected $primaryKey = 'usuario_id';
     protected $fillable = ['usuario_id','caminho'];
 
