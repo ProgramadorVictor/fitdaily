@@ -16,46 +16,41 @@ class CadastroController extends Controller
     public function cadastrar(Request $req){
          //validate cpf não é oficial do laravel, é uma api rest feita por brasileiros, aqui está o site: https://github.com/LaravelLegends/pt-br-validator
         $regras = [
-            'txtNome' => 'required',
-            'txtSobrenome' => 'required',
-            'txtEmail' => 'required|email|unique:usuarios,email',
-            'txtConfirmacaoDeEmail' => 'required|same:txtEmail',
-            'txtCPF' => 'required|cpf|unique:usuarios,cpf',
-            'txtCelular' => 'required|celular_com_ddd',
-            'txtSenha' => 'required|min:8|alphadash',
-            'txtConfirmacaoDeSenha' => 'required|same:txtSenha',
-            'txtNascimento' => 'required',
+            'nome' => 'required',
+            'sobrenome' => 'required',
+            'email' => 'required|email|unique:usuarios,email',
+            'confirmacaodeemail' => 'required|same:email',
+            'cpf' => 'required|cpf|unique:usuarios,cpf',
+            'celular' => 'required|celular_com_ddd',
+            'senha' => 'required|min:8|alphadash',
+            'confirmacaodesenha' => 'required|same:senha',
+            'nascimento' => 'required',
         ];
         $feedback =[
-            'txtNome.required' => 'O campo nome é requerido.',
-            'txtSobrenome.required' => 'O campo sobrenome é requerido.',
-            'txtEmail.required' => 'O campo email é requerido.',
-            'txtEmail.unique' => 'O email ja existe no banco de dados.',
-            'txtEmail.email' => 'O campo email deve ser um email.',
-            'txtConfirmacaoDeEmail.required' => 'O campo de confirmação de email é requerido.',
-            'txtConfirmacaoDeEmail.same' => 'O campo de confirmação de email tem que ser igual a email.',
-            'txtCPF.required' => 'O campo CPF é requerido.',
-            'txtCPF.unique' => 'O CPF ja existe no banco de dados.',
-            'txtCPF.cpf' => 'O campo CPF é inválido.',
-            'txtCelular.required' => 'O campo celular é requerido.',
-            'txtCelular.celular_com_ddd' => 'O campo celular é inválido.',
-            'txtSenha.required' => 'O campo senha é requerido.',
-            'txtSenha.min' => 'O campo senha tem que ter no minimo 8 caracteres.',
-            'txtSenha.alphadash' => 'O campo senha não deve ter simbolos: @*$#&%!.',
-            'txtConfirmacaoDeSenha.required' => 'O campo de confirmação de senha é requerido.',
-            'txtConfirmacaoDeSenha.same' => 'O campo de confirmação de senha tem que ser igual a senha.',
-            'txtNascimento.required' => 'O campo nascimento é requerido.',2
+            'nome.required' => 'O campo nome é requerido.',
+            'sobrenome.required' => 'O campo sobrenome é requerido.',
+            'email.required' => 'O campo email é requerido.',
+            'email.unique' => 'O email ja existe no banco de dados.',
+            'email.email' => 'O campo email deve ser um email.',
+            'confirmacaodeemail.required' => 'O campo de confirmação de email é requerido.',
+            'confirmacaodeemail.same' => 'O campo de confirmação de email tem que ser igual a email.',
+            'cpf.required' => 'O campo CPF é requerido.',
+            'cpf.unique' => 'O CPF ja existe no banco de dados.',
+            'cpf.cpf' => 'O campo CPF é inválido.',
+            'celular.required' => 'O campo celular é requerido.',
+            'celular.celular_com_ddd' => 'O campo celular é inválido.',
+            'senha.required' => 'O campo senha é requerido.',
+            'senha.min' => 'O campo senha tem que ter no minimo 8 caracteres.',
+            'senha.alphadash' => 'O campo senha não deve ter simbolos: @*$#&%!.',
+            'confirmacaodesenha.required' => 'O campo de confirmação de senha é requerido.',
+            'confirmacaodesenha.same' => 'O campo de confirmação de senha tem que ser igual a senha.',
+            'nascimento.required' => 'O campo nascimento é requerido.',
         ];
         $req->validate($regras, $feedback);
         try{
             $usuario = new Usuario();
-            $usuario->nome = $req->txtNome;
-            $usuario->sobrenome = $req->txtSobrenome;
-            $usuario->email = $req->txtEmail;
-            $usuario->CPF = $req->txtCPF;
-            $usuario->celular = $req->txtCelular;
-            $usuario->senha = Hash::make($req->txtSenha);
-            $usuario->nascimento = $req->txtNascimento;
+            $usuario->fill($req->all());
+            $usuario->senha = Hash::make($req->senha);
             $usuario->save();
             $mensagem = "Seu cadastro foi realizado com sucesso.";
             $classe = 'alert-success show';

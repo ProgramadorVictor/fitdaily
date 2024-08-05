@@ -19,33 +19,33 @@ class UsuarioController extends Controller
         ];
 
         $depois = [
-            'perfil_foto' => ($req->txtImagem == null ? session('usuario')['perfil_foto'] : $req->txtImagem),
-            'email' => $req->txtEmail,
-            'celular' => $req->txtCelular
+            'perfil_foto' => ($req->imagem == null ? session('usuario')['perfil_foto'] : $req->imagem),
+            'email' => $req->email,
+            'celular' => $req->celular
         ];
 
         if($depois != $antes){
             $regras = [
-                'txtCelular' => 'required|celular_com_ddd',
-                'txtEmail' => 'required|email',
-                'txtImagem' => 'image'
+                'celular' => 'required|celular_com_ddd',
+                'email' => 'required|email',
+                'imagem' => 'image'
             ];
             $feedback = [
-                'txtCelular.required' => 'O campo celular é requerido.',
-                'txtCelular.celular_com_ddd' => 'O campo celular digitado é inválido.',
-                'txtEmail.required' => 'O campo email é requerido.',
-                'txtEmail.email' => 'O campo email é inválido.',
-                'txtImagem.image' => 'O arquivo enviado não é uma imagem.'
+                'celular.required' => 'O campo celular é requerido.',
+                'celular.celular_com_ddd' => 'O campo celular digitado é inválido.',
+                'email.required' => 'O campo email é requerido.',
+                'email.email' => 'O campo email é inválido.',
+                'imagem.image' => 'O arquivo enviado não é uma imagem.'
             ];
             $req->validate($regras, $feedback);
             try{
                 $usuario = Usuario::find(session('usuario')['id']);
 
-                $usuario->email = $req->txtEmail;
-                $usuario->celular = $req->txtCelular;
+                $usuario->email = $req->email;
+                $usuario->celular = $req->celular;
                 $usuario->update();
 
-                $caminho = ImagemController::atualizarImagem($req->file('txtImagem'));
+                $caminho = ImagemController::atualizarImagem($req->file('imagem'));
 
                 Session::forget('usuario');
 
@@ -55,8 +55,8 @@ class UsuarioController extends Controller
                     'perfil_foto' => $caminho,
                     'nome' => $usuario->nome,
                     'sobrenome' => $usuario->sobrenome,
-                    'email' => $req->txtEmail,
-                    'celular' => $req->txtCelular,
+                    'email' => $req->email,
+                    'celular' => $req->celular,
                 ];
 
                 Session::put('usuario', $sessao_atualizada);

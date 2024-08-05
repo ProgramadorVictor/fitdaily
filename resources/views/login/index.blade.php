@@ -11,10 +11,10 @@
                     <form method="post" action="{{route('logar')}}" autocomplete="off">
                         @csrf
                         <div class="input-group flex-nowrap my-2">
-                            <input value="{{old('txtLogin')}}" name="txtLogin" type="text" class="cpf form-control rounded-0 ps-2 fw-bolder border border-2 border-dark" placeholder="Digite seu CPF" aria-label="USUÁRIO" aria-describedby="addon-wrapping">
+                            <input value="{{old('login')}}" name="login" type="text" class="cpf form-control rounded-0 ps-2 fw-bolder border border-2 border-dark" placeholder="Digite seu CPF" aria-label="USUÁRIO" aria-describedby="addon-wrapping">
                         </div>
                         <div class="input-group flex-nowrap mt-5">
-                            <input value="{{old('txtSenha')}}" name="txtSenha" type="password" class="form-control rounded-0 ps-2 fw-bolder border border-2 border-dark" placeholder="Senha" aria-label="SENHA" aria-describedby="addon-wrapping">
+                            <input value="{{old('senha')}}" name="senha" type="password" class="form-control rounded-0 ps-2 fw-bolder border border-2 border-dark" placeholder="Senha" aria-label="SENHA" aria-describedby="addon-wrapping">
                         </div>
                         <div class="col-12 px-2 my-2 d-flex justify-content-start d-block">
                             <a id="modal-recuperar-senha" class="d-flex justify-content-end text-cyan" href="#">Esqueceu a senha?</a>

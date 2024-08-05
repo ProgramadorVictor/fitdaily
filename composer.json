@@ -6,14 +6,14 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
-        "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravellegends/pt-br-validator": "^11.0",
         "mailgun/mailgun-php": "^4.2",
-        "mercadopago/dx-php": "^2.6"
+        "mercadopago/dx-php": "^2.6",
+        "symfony/mailer": "*"
     },
     "require-dev": {
         "facade/ignition": "^2.5",
@@ -58,7 +58,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true

@@ -23,7 +23,7 @@
                                     <i id="foto-padrao" class="fa fa-user fa-3x text-white disable" aria-hidden="true"></i>
                                 @endif
                             </button>
-                            <input name="txtImagem" type="file" class="display-none">
+                            <input name="imagem" type="file" class="display-none">
                         </div>
                         <div class="col-12 text-center">
                             <p class="text-white d-block m-b-1"> Olá, Como vai?</p>
@@ -32,11 +32,11 @@
                     </div>
                     <p class="text-white fw-bolder">Celular:</p>
                     <div class="input-group flex-nowrap my-2">
-                        <input value="{{session('usuario')['celular']}}" name="txtCelular" type="text" class="celular form-control rounded-0 ps-2 fw-bolder border border-2 border-dark" placeholder="Celular" aria-describedby="addon-wrapping">
+                        <input value="{{session('usuario')['celular']}}" name="celular" type="text" class="celular form-control rounded-0 ps-2 fw-bolder border border-2 border-dark" placeholder="Celular" aria-describedby="addon-wrapping">
                     </div>
                     <p class="text-white fw-bolder">Email:</p>
                     <div class="input-group flex-nowrap my-2">
-                        <input value="{{session('usuario')['email']}}" name="txtEmail" type="email" class="form-control rounded-0 ps-2 fw-bolder border border-2 border-dark" placeholder="Email" aria-describedby="addon-wrapping">
+                        <input value="{{session('usuario')['email']}}" name="email" type="email" class="form-control rounded-0 ps-2 fw-bolder border border-2 border-dark" placeholder="Email" aria-describedby="addon-wrapping">
                     </div>
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="col-12 btn btn-primary border-2 border-dark background-red btn-border">Atualizar</button>
@@ -49,10 +49,10 @@
 @section('script')
     <script>
         $('button.icon-foto').on('click', function(){
-            $('input[name="txtImagem"]').trigger('click');
+            $('input[name="imagem"]').trigger('click');
         });
 
-        $('input[name="txtImagem"]').on('change', function(event) {
+        $('input[name="imagem"]').on('change', function(event) {
             var arquivo = event.target.files[0];
             if (arquivo) {
                 var url = URL.createObjectURL(arquivo);

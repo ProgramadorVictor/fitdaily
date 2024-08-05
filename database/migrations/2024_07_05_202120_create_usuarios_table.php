@@ -17,7 +17,6 @@ class CreateUsuariosTable extends Migration
             $table->id();
             $table->string('nome');
             $table->string('sobrenome');
-            $table->unsignedBigInteger('tipo_de_conta_id')->default(1);
             $table->string('email');
             $table->string('cpf', 14)->unique();
             $table->string('celular');
@@ -26,7 +25,9 @@ class CreateUsuariosTable extends Migration
             $table->timestamp('data_inicio_academia')->nullable();
             $table->timestamp('data_fim_academia')->nullable();
             $table->timestamps();
-
+        });
+        Schema::table('usuarios', function (Blueprint $table){
+            $table->unsignedBigInteger('tipo_de_conta_id')->after('id')->default(1);
             $table->foreign('tipo_de_conta_id')->references('id')->on('tipo_de_usuarios');
         });
     }
@@ -38,6 +39,10 @@ class CreateUsuariosTable extends Migration
      */
     public function down()
     {
+        Schema::table('usuarios', function (Blueprint $table) {
+            $table->dropForeign('usuarios_tipo_de_conta_id_foreign');
+            $table->dropColumn('tipo_de_conta_id');
+        });
         Schema::dropIfExists('usuarios');
     }
 }

@@ -15,13 +15,11 @@ class CreateTreinosTable extends Migration
     {
         Schema::create('treinos', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('usuario_id');
             $table->json('treino');
-            // $table->json('a');
-            // $table->json('b');
-            // $table->json('c');
             $table->timestamps();
-
+        });
+        Schema::table('treinos', function (Blueprint $table) {
+            $table->unsignedBigInteger('usuario_id')->after('id');
             $table->foreign('usuario_id')->references('id')->on('usuarios');
         });
     }
@@ -33,6 +31,10 @@ class CreateTreinosTable extends Migration
      */
     public function down()
     {
+        Schema::table('treinos', function (Blueprint $table) {
+            $table->dropForeign('treinos_usuario_id_foreign');
+            $table->dropColumn('usuario_id');
+        });
         Schema::dropIfExists('treinos');
     }
 }

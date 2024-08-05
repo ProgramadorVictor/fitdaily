@@ -14,7 +14,6 @@ class AssinaturaSeeder extends Seeder
      */
     public function run()
     {
-
         Assinatura::create([
             'id' => 1,
             'assinatura' => 'Mensal',

@@ -40,4 +40,3 @@ Route::middleware('autenticacao')->group(function(){
     Route::get('/pagamento-sucesso', 'App\Http\Controllers\Front\PagamentoController@success')->name('pagamento-sucesso');
     
 });
-

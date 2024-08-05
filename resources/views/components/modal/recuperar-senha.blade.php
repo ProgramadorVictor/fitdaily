@@ -10,7 +10,7 @@
                     <hr class="text-white">
                     <p class="text-white">Digite o seu email abaixo, ao clicar em <br> <strong>"Enviar solicitação"</strong> será enviado para o email digitado uma solicitação de troca de senha. <br> Caso não encontrado na caixa principal verificar a caixa de spam</p>
                     <div class="input-group flex-nowrap mb-4">
-                        <input name="txtEmail" type="email" class="form-control rounded-0 ps-2 fw-bolder border border-2 border-dark" placeholder="Email" aria-describedby="addon-wrapping">
+                        <input name="email" type="email" class="form-control rounded-0 ps-2 fw-bolder border border-2 border-dark" placeholder="Email" aria-describedby="addon-wrapping">
                     </div>
                     <div class="d-flex justify-content-center">
                         <button type="submit" class="col-12 btn btn-primary border-2 border-dark background-red btn-border">Enviar solicitação</button>

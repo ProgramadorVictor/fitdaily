@@ -19,23 +19,38 @@ class LoginController extends Controller
         return view('login.index')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);  
     }
     public function logar(Request $req){
-        $login = $req->txtLogin;
-        $senha = $req->txtSenha;
+        $login = $req->login;
+        $senha = $req->senha;
         
         $regras = [
-            'txtLogin' => 'required|cpf',
-            'txtSenha' => 'required'
+            'login' => 'required|cpf',
+            'senha' => 'required'
         ];
         $feedback = [
-            'txtLogin.required' => "O campo usuario deve ser preenchido.",
-            'txtLogin.cpf' => "O CPF digitado é inválido.",
-            'txtSenha.required' => "O campo de senha deve ser preenchido."
+            'login.required' => "O campo usuario deve ser preenchido.",
+            'login.cpf' => "O CPF digitado é inválido.",
+            'senha.required' => "O campo de senha deve ser preenchido."
         ];
         
         //Esses CPFs exclusivos são gerados pela seeder, usuários para fins de teste.
-        if($req->txtLogin != '999.999.999-99' && $req->txtLogin != '000.000.000-00'){
+        $acesso_liberado = [
+            '999.999.999-99',
+            '000.000.000-00',
+            '111.111.111-11',
+        ];
+        
+        $acesso = false;
+        foreach($acesso_liberado as $liberar){
+            if($req->login == $liberar){
+                $acesso = true;
+                break;
+            }
+        }
+        
+        if(!$acesso){
             $req->validate($regras, $feedback);
         }
+        //Melhoria nos logins para CPFs exclusivos.
 
         $usuario = Usuario::where('cpf', $login)->first();
 
@@ -80,7 +95,7 @@ class LoginController extends Controller
     }
 
     public function recuperarSenha(Request $req){
-        $destino = $req->txtEmail;
+        $destino = $req->email;
         if(Usuario::where('email', $destino)->first()){
             $id = Usuario::where('email', $destino)->first(); $id = $id->id;
             $usuario = Usuario::find($id);
