@@ -9,5 +9,5 @@ class Assinatura extends Model
 {
     use HasFactory;
     protected $table = 'assinaturas';
-    protected $fillable = ['assinatura', 'valor','titulo','descricao','duracao','desconto'];
+    protected $fillable = ['assinatura','valor','titulo','descricao','duracao','desconto'];
 }

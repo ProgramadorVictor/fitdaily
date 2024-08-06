@@ -20,9 +20,11 @@ class AutenticacaoMiddleware
         if(Session::has('usuario')){
             return $next($request);
         }else{
-            $mensagem = "Você precisa de autenticação para acessar essa página.";
-            $classe = "alert-danger show";
-            return redirect()->route('login', ['mensagem' => $mensagem, 'classe' => $classe]);
+            $dados = [
+                "mensagem" => "Você precisa de autenticação para acessar essa página.",
+                'classe' => "alert-danger show"
+            ];
+            return redirect()->route('login')->with('alert', ['dados' => $dados]);
         }
     }
 }

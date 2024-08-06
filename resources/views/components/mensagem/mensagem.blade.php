@@ -6,7 +6,7 @@
         @endforeach
     </span>
 @elseif(session('alert'))
-    <span class="alert {{ session('alert')['classe'] }} alert-dismissible fade" role="alert">
-        <p class="fw-bolder p-0 m-0">{{ session('alert')['mensagem'] }}</p>
+    <span class="alert {{ session('alert')['dados']['classe'] }} alert-dismissible fade" role="alert">
+        <p class="fw-bolder p-0 m-0">{{ session('alert')['dados']['mensagem'] }}</p>
     </span>
 @endif

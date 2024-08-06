@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Front;
+namespace App\Http\Controllers\Login;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,7 +11,11 @@ use Illuminate\Support\Facades\Hash;
 class CadastroController extends Controller
 {
     public function cadastro($mensagem = null, $classe = null){
-        return view('cadastro.index')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);  
+        $dados = [ 
+            "mensagem" => $mensagem,
+            "classe" => $classe
+        ];
+        return view('cadastro.index')->with('alert', ['dados' => $dados]);  
     }
     public function cadastrar(Request $req){
          //validate cpf não é oficial do laravel, é uma api rest feita por brasileiros, aqui está o site: https://github.com/LaravelLegends/pt-br-validator
@@ -52,13 +56,17 @@ class CadastroController extends Controller
             $usuario->fill($req->all());
             $usuario->senha = Hash::make($req->senha);
             $usuario->save();
-            $mensagem = "Seu cadastro foi realizado com sucesso.";
-            $classe = 'alert-success show';
-            return redirect()->route('login')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);  
+            $dados = [
+                "mensagem" => "Seu cadastro foi realizado com sucesso.",
+                "classe" => 'alert-success show'
+            ];
+            return redirect()->route('login')->with('alert', ['dados' => $dados]);  
         }catch(QueryException $e){
-            $mensagem = "Ocorreu um erro ao realizar o cadastro.";
-            $classe = 'alert-danger show';
-            return redirect()->route('cadastro')->with('alert', ['mensagem' => $mensagem, 'classe' => $classe]);  
+            $dados = [
+                "mensagem" => "Ocorreu um erro ao realizar o cadastro.",
+                "classe" => 'alert-danger show'
+            ];
+            return redirect()->route('cadastro')->with('alert', ['dados' => $dados]);  
         }
     }
 }

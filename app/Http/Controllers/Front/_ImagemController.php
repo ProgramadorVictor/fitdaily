@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class ImagemController extends Controller
 {
     public static function primeiroLogin($usuario){
+        // dd(!Imagem::where('usuario_id', $usuario->id)->first());
         if(!Imagem::where('usuario_id', $usuario->id)->first()){
             $imagem = new Imagem();
             $imagem->usuario_id = $usuario->id;
