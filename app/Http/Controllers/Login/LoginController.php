@@ -55,16 +55,10 @@ class LoginController extends Controller
                 $imagem->save();
             }
             $caminho = Imagem::where('usuario_id', $usuario->id)->first();
-            $perfil_foto = str_replace('public/', '', $caminho->caminho);
-            //Analisar esse código de criar sessão
-            $usuario->makeHidden(['cpf', 'senha', 'data_inicio_academia','data_fim_academia','created_at','updated_at']);
+            $usuario->makeHidden(['cpf', 'senha', 'data_inicio_academia','data_fim_academia','created_at','updated_at','tipo_de_conta_id']);
             $sessao = $usuario->toArray();
-            $sessao['perfil_foto'] = $perfil_foto;
-            if(isset($sessao['tipo_de_conta_id'])){
-                $sessao['tipo_de_conta'] = $sessao['tipo_de_conta_id'];
-                unset($sessao['tipo_de_conta_id']);
-            }
-            //Até aqui
+            $sessao['perfil_foto'] = str_replace('public/', '', $caminho->caminho);
+            $sessao['tipo_de_conta'] = $usuario->tipoDeUsuario->id;
             Session::put("usuario", $sessao);
             $dados = [
                 'mensagem' => "Seja bem-vindo (a), ". session('usuario')['nome']." ".session('usuario')['sobrenome'],

@@ -10,4 +10,8 @@ class Usuario extends Model
     use HasFactory;
     protected $table = 'usuarios';
     protected $fillable = ['nome','sobrenome','tipo_de_conta_id','email','cpf','celular','senha','nascimento','data_inicio_academia','data_fim_academia'];
+
+    public function tipoDeUsuario(){
+        return $this->belongsTo('App\Models\Tipo','tipo_de_conta_id','id');
+    }
 }

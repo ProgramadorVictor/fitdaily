@@ -17,14 +17,13 @@ class AutenticacaoMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Session::has('usuario')){
-            return $next($request);
-        }else{
+        if(!Session::has('usuario')){
             $dados = [
                 "mensagem" => "Você precisa de autenticação para acessar essa página.",
                 'classe' => "alert-danger show"
             ];
             return redirect()->route('login')->with('alert', ['dados' => $dados]);
         }
+        return $next($request);
     }
 }
