@@ -1,0 +1,13 @@
+//Necessário
+1. Fazer validações do tipo verificar se existe em determinada tabela, antes de adicionar.
+2. Ao mudar o nome do arquivo eu devo fazer com que todas as imagens com os nomes anteriores sejam apagadas.
+3. Deve ter uma barra de buscar para procurar o treino no qual devo editar.
+4. Administrador deve olhar todos os usuarios podendo também alterar o tipo de conta entre Aluno e Treinador.
+6. Fazer uma tela para avisa que o email não é verificado
+
+Quando o chat-box estiver pronto.
+1. Administradores podem deixar avisos no chat e também devem excluir o aviso.
+
+//Visual
+2. Avisar que o documento colocado não é uma imagem.
+3. Ao clica em email mostrar a mensagem, e bloqueia a mudança de email, para desbloquear tem que clica no botão sim que indica que entendeu.

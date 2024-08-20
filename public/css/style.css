@@ -1,0 +1,65 @@
+html body{
+    background-color: #DC2F02 !important;
+    height: 100vh; 
+}
+.background-black{
+    background-color: #3E3939 !important;
+}
+.background-red{
+    background-color: #DC2F02 !important;
+}
+.text-cyan{
+    color:#04F0FF !important;
+}
+.disable{
+    pointer-events: none !important;
+}
+.btn-border{
+    border-radius: 0.5rem !important;
+}
+.border-black{
+    border-color:#3E3939 !important;
+}
+.icon-foto{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+}
+.border-radius-none{
+    border-radius: 0px !important;
+}
+.alert{
+    position: fixed;
+    z-index: 1000;
+    top: 2rem;
+    right: 1rem;
+    left: 1rem;
+    text-align: center;
+    margin: 0rem;
+    margin-top: 1rem;
+}
+.modal-border{
+    --bs-modal-inner-border-radius: unset;
+    border-top-left-radius: unset;
+    border-top-right-radius: unset;
+}
+.display-none{
+    display: none;
+}
+.exercicio-imagem{
+    width: 100%;
+    height: 100%;
+    height: 20rem;
+    object-fit: fit; 
+    /* Preenche a imagem dentro da div */
+    /* O contain também é legal */
+}
+.disabled{
+    pointer-events: none;
+}
+.span-senhas{
+    border-left: none !important;
+}
+.input-senha{
+    border-right: none !important;
+}
