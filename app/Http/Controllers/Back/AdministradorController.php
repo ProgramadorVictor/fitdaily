@@ -3,16 +3,18 @@
 namespace App\Http\Controllers\Back;
 
 use App\Http\Requests\AdministradorRequest;
+use App\Models\Tipo;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Administrador;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
+
 class AdministradorController extends Controller
 {
     public function login(){
-        session()->forget('usuario'); session()->forget('admin');
         return view('admin.login.login');
     }
     public function autenticar(AdministradorRequest $req){
@@ -35,7 +37,30 @@ class AdministradorController extends Controller
                 'nome' => 'EXERCICIOS',
                 'route' => route('exercicio.index'),
             ],
+            [
+                'id' => 0,
+                'nome' => 'GERENCIAR ALUNOS E TREINADORES',
+                'route' => route('admin.gerenciar'),
+            ],
         ];
         return view('admin.principal.index', ['menus' => $menus]);
+    }
+    public function gerenciar(){
+        $usuarios = Usuario::orderBy('nome','asc')->get();
+        $tipos = Tipo::all();
+        return view('admin.alunos_e_treinadores.index')->with(['usuarios' => $usuarios, 'tipos' => $tipos]);
+    }
+    // public function alterarTipo(Request $request){
+    //     $usuario = Usuario::find($request->input('id'));
+    //     $usuario->tipo_id = $request->input('tipo');
+    //     $usuario->save();
+    //     response()->json();
+    // }
+    public function alterarTipo(Request $request){
+        $usuario = Usuario::find($request->input('id'));
+        $usuario->tipo_id = $request->input('tipo');
+        $usuario->save();
+        return redirect()->route('admin.gerenciar')
+        ->with('alert', ['mensagem' => "O usuario foi atualizado com sucesso", 'classe' => 'alert-success show']);
     }
 }

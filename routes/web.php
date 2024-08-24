@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Mail\VerificarEmail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,6 +12,8 @@ use App\Mail\VerificarEmail;
 |
 */
 
+// Route::get('/debug', function(){return view('auth.login.recuperar-senha');});
+Route::get('/obter-ip', function () {return response()->json(['ip' => gethostbyname(gethostname())]);});
 //Front
 Route::get('/cadastro', 'App\Http\Controllers\Auth\CadastroController@index')->name('cadastro.index');
 Route::post('/cadastro-realizado', 'App\Http\Controllers\Auth\CadastroController@cadastrar')->name('cadastro.cadastrar');
@@ -25,23 +26,18 @@ Route::post('/email-recuperar-senha', 'App\Http\Controllers\Auth\EmailController
 Route::get('/recuperar-senha', 'App\Http\Controllers\Auth\LoginController@recuperarSenha');
 Route::patch('/senha-alterada', 'App\Http\Controllers\Auth\LoginController@senhaAlterada')->name('login.senha-alterada');
 Route::group(['prefix' => 'home', 'middleware' => ['autenticacao', 'verificado']], function(){
-    Route::get('/inicio','App\Http\Controllers\Front\PrincipalController@index')->name('tela-principal');
-    //Rota acima ir diretamente para o chat onde pode conter avisos.
+    Route::get('/chat','App\Http\Controllers\Front\ChatController@chat')->name('tela-principal');
+    Route::post('/enviar-mensagem','App\Http\Controllers\Front\ChatController@enviarMensagem');
     Route::get('/usuario-perfil','App\Http\Controllers\Front\UsuarioController@perfil')->name('usuario.perfil');
     Route::patch('/usuario-perfil-atualizar','App\Http\Controllers\Front\UsuarioController@atualizar')->name('usuario.atualizar');
-
-
     Route::get('/usuario-treinos','App\Http\Controllers\Front\UsuarioController@treinos')->name('usuario.treinos');
     Route::get('/usuario-exercicios/{treino}','App\Http\Controllers\Front\UsuarioController@exercicios')->name('usuario.exercicios');
-    
     Route::get('/planos','App\Http\Controllers\Front\FinanceiroPagamentoController@planos')->name('financeiro-pagamento.planos');
     Route::post('/pagamento','App\Http\Controllers\Front\FinanceiroPagamentoController@realizarPagamento')->name('financeiro-pagamento.realizar-pagamento');
     Route::get('/pagamento-sucesso', 'App\Http\Controllers\Front\FinanceiroPagamentoController@success')->name('financeiro-pagamento.pagamento-sucesso');
     Route::get('/pagamento-falha', 'App\Http\Controllers\Front\FinanceiroPagamentoController@failure')->name('financeiro-pagamento.pagamento-falha');
     Route::get('/pagamento-pendente', 'App\Http\Controllers\Front\FinanceiroPagamentoController@pending')->name('financeiro-pagamento.pagamento-pendente');
     Route::get('/extratos','App\Http\Controllers\Front\FinanceiroPagamentoController@extratos')->name('financeiro-pagamento.extratos');
-
-
     Route::get('/alunos-treinos/index','App\Http\Controllers\Front\AlunosTreinosController@index')->name('alunos-treinos.index');
     Route::get('/alunos-treinos/aluno/{aluno}','App\Http\Controllers\Front\AlunosTreinosController@treino')->name('alunos-treinos.aluno');
     Route::post('/alunos-treinos/aluno/adicionar-treino/{aluno}','App\Http\Controllers\Front\AlunosTreinosController@adicionarTreino')->name('alunos-treinos.adicionar-treino');
@@ -57,7 +53,10 @@ Route::get('/admin','App\Http\Controllers\Back\AdministradorController@login')->
 Route::post('/admin-autenticar','App\Http\Controllers\Back\AdministradorController@autenticar')->name('admin.autenticar');
 Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
     Route::get('/principal','App\Http\Controllers\Back\AdministradorController@principal')->name('admin.principal');
+    Route::get('/gerenciar-alunos-e-treinadores','App\Http\Controllers\Back\AdministradorController@gerenciar')->name('admin.gerenciar');
     Route::resource('/exercicio','App\Http\Controllers\Back\ExercicioController');
+    Route::patch('/alterar-tipo-usuario','App\Http\Controllers\Back\AdministradorController@alterarTipo')->name('admin.alterar-tipo');
 });
 //Rota de Fallback
+Route::get('/', function(){return redirect()->route('login.index');});
 Route::fallback(function(){return redirect()->route('login.index')->with('alert',['mensagem' => "A rota acessada no momento não existe ou foi desabilitada", 'classe' => 'alert-danger show']);});

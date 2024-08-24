@@ -56,23 +56,39 @@
 @endsection
 @section('script')
     <script>
-        $('input[name="email"]').on('click', function(){
-            $('#avisoEmail').removeClass('d-none');
-        });
-        $('button.icon-foto').on('click', function(){
-            $('input[name="imagem"]').trigger('click');
-        });
-        $('input[name="imagem"]').on('change', function(event) {
-            var arquivo = event.target.files[0];
-            if (arquivo) {
-                var url = URL.createObjectURL(arquivo);
-                if ($('#foto-perfil').length) {
-                    $('button .icon-foto').attr('src', url);
-                    $('div .icon-foto').attr('src', url);
-                } else {
-                    $('.icon-foto').html('<img id="foto-perfil" src="' + url + '" class="icon-foto">');
-                }
+        $(document).ready(function(){
+            // var cont = 0;
+            var campo_email = true;
+            ativaCampo = () => {
+                $('input[name="email"]').removeClass('disabled');
+                $('#unlock').removeClass('d-none');
+                $('#lock').addClass('d-none');
             }
+            $('input[name="email"]').on('click', function(){
+                // cont++;
+                // if(cont == 1)
+                if(campo_email){
+                    $('#avisoEmail').removeClass('d-none');
+                    $('input[name="email"]').addClass('disabled');
+                    $('#lock').removeClass('d-none');
+                    campo_email = false;
+                }
+            });
+            $('button.icon-foto').on('click', function(){
+                $('input[name="imagem"]').trigger('click');
+            });
+            $('input[name="imagem"]').on('change', function(event) {
+                var arquivo = event.target.files[0];
+                if (arquivo) {
+                    var url = URL.createObjectURL(arquivo);
+                    if ($('#foto-perfil').length) {
+                        $('button .icon-foto').attr('src', url);
+                        $('div .icon-foto').attr('src', url);
+                    } else {
+                        $('.icon-foto').html('<img id="foto-perfil" src="' + url + '" class="icon-foto">');
+                    }
+                }
+            });
         });
     </script>
 @endsection

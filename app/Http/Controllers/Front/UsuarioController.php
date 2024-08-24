@@ -76,7 +76,7 @@ class UsuarioController extends Controller
                 return redirect()->route('usuario.perfil')
                 ->with('alert', ['mensagem' => "Perfil atualizado com sucesso", 'classe' => "alert-success show"]);
             }catch(QueryException $e){
-                return redirect()->route('usuario.perfil')->with('alert', ['mensagem' => "Ocorreu um erro inesperado.",'classe' => "alert-danger show"]);
+                return redirect()->route('usuario.perfil')->with('alert', ['mensagem' => "Ocorreu um erro inesperado, por favor reporte ao email contato.fitdaily@gmail.com",'classe' => "alert-danger show"]);
             }
         }
         return redirect()->route('usuario.perfil')

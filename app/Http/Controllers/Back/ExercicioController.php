@@ -18,7 +18,7 @@ class ExercicioController extends Controller
      */
     public function index()
     {
-        $exercicios = Exercicio::all();
+        $exercicios = Exercicio::orderBy('nome', 'asc')->get();
         return view('admin.exercicios.index', ['exercicios' => $exercicios]);
     }
 
@@ -29,7 +29,7 @@ class ExercicioController extends Controller
      */
     public function create()
     {
-        $tipos = ExercicioTipo::all();
+        $tipos = ExercicioTipo::orderBy('nome', 'asc')->get();
         return view('admin.exercicios.adicionar', ['tipos' => $tipos]);
     }
 
@@ -69,7 +69,7 @@ class ExercicioController extends Controller
             ->with('alert', ['mensagem' => "Você cadastrou um exercicio com sucesso", 'classe' => 'alert-success show']);
         }catch(Exception $e){
             return redirect()->route('exercicio.index')
-            ->with('alert', ['mensagem' => "Ocorreu um erro inesperado", 'classe' => 'alert-danger show']);
+            ->with('alert', ['mensagem' => "Ocorreu um erro inesperado, por favor reporte ao email contato.fitdaily@gmail.com", 'classe' => 'alert-danger show']);
         }
     }
 
@@ -155,7 +155,7 @@ class ExercicioController extends Controller
             ->with('alert', ['mensagem' => "Nenhuma alteração foi feita", 'classe' => 'alert-warning show']);
         }catch(Exception $e){
             return redirect()->route('exercicio.edit', ['exercicio' => $exercicio->id])
-                ->with('alert', ['mensagem' => "Ocorreu um erro inesperado", 'classe' => 'alert-danger show']);
+                ->with('alert', ['mensagem' => "Ocorreu um erro inesperado, por favor reporte ao email contato.fitdaily@gmail.com", 'classe' => 'alert-danger show']);
         }
         
     }

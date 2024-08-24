@@ -21,7 +21,10 @@
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ms-auto gap-4">
                     <li class="nav-item ">
-                        <a class="nav-link active fw-bolder text-white background-red btn-border border border-2 border-dark" aria-current="page" href="{{route('usuario.perfil')}}">PERFIL</a>
+                        <a class="nav-link active fw-bolder text-white background-red btn-border border border-2 border-dark" href="{{route('tela-principal')}}">CHAT</a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link active fw-bolder text-white background-red btn-border border border-2 border-dark" href="{{route('usuario.perfil')}}">PERFIL</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link fw-bolder text-white background-red btn-border border border-2 border-dark" href="{{route('financeiro-pagamento.planos')}}">PLANOS</a>
@@ -69,34 +72,29 @@
         <div class="offcanvas-body">
             <ul class="p-0 list-unstyled background-black">
                 <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
+                    <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="{{route('tela-principal')}}">
+                        <p class="col-11 m-0 text-center">CHAT</p>
+                    </a>
+                </li>
+                <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
                     <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="{{route('usuario.perfil')}}">
                         <p class="col-11 m-0 text-center">PERFIL</p>
                         <i class="fa fa-user text-white" aria-hidden="true"></i>
                     </a>
                 </li>
                 <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
-                    <a id="clickFinanceiro" class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="#" >
-                        <p class="col-11 m-0">FINANCEIRO</p>
-                        <i id="icoDown" class="fa fa-caret-down" aria-hidden="true"></i>
-                        <i id="icoUp" class="fa fa-caret-up d-none" aria-hidden="true"></i>
+                    <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="{{route('financeiro-pagamento.planos')}}">
+                        <p class="col-11 m-0">PLANOS</p>
                     </a>
                 </li>
-                <ul id="menuFinanceiro" class="d-none p-0 list-unstyled background-black">
-                    <li class="drop-menu col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
-                        <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="{{route('financeiro-pagamento.planos')}}">
-                            <p class="col-11 m-0">PLANOS</p>
-                        </a>
-                    </li>
-                    <li class="drop-menu col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
-                        <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="{{route('financeiro-pagamento.extratos')}}">
-                            <p class="col-11 m-0">EXTRATOS</p>
-                        </a>
-                    </li>
-                </ul>
+                <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
+                    <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="{{route('financeiro-pagamento.extratos')}}">
+                        <p class="col-11 m-0">EXTRATOS</p>
+                    </a>
+                </li>
                 <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
                     <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="{{route('usuario.treinos')}}">
                         <p class="col-11 m-0">TREINOS</p>
-                        <i class="fa fa-id-card text-white" aria-hidden="true"></i>
                     </a>
                 </li>
                 @if(session('usuario')['tipo_id'] == 2)

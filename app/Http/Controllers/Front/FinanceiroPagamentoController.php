@@ -34,8 +34,8 @@ class FinanceiroPagamentoController extends Controller
         $preference->items = [$item];
         $preference->back_urls = [
             "success" => route('financeiro-pagamento.pagamento-sucesso'),
-            "pending" => route('tela-principal'),
-            "failure" => route('tela-principal'),
+            "pending" => route('financeiro-pagamento.pagamento-pendente'),
+            "failure" => route('financeiro-pagamento.pagamento-falha'),
         ];
         $preference->auto_return = "approved";
         $preference->save();
@@ -88,19 +88,22 @@ class FinanceiroPagamentoController extends Controller
                     $extrato->usuario->save();
                 }
                 $req->session()->forget('produto');
-                return redirect()->route('tela-principal');
+                return redirect()->route('financeiro-pagamento.planos')
+                ->with('alert', ['mensagem' => 'Pagamento aprovado com sucesso. Sua assinatura foi atualizada.','classe' => 'alert-success show']);
             }catch(Exception $e){
                 dd($e);
                 return redirect()->route('financeiro-pagamento.planos')
-                ->with('alert', ['mensagem' => 'Ocorreu um erro insperado','classe' => 'alert-danger show']);
+                ->with('alert', ['mensagem' => 'Ocorreu um erro inesperado, por favor reporte ao email contato.fitdaily@gmail.com','classe' => 'alert-danger show']);
             }
         }
     }
     public function failure(Request $Req){
-        dd("failure");
+        return redirect()->route('financeiro-pagamento.planos')
+        ->with('alert', ['mensagem' => 'O pagamento falhou. Verifique os detalhes do pagamento e tente novamente. Se o problema persistir, entre em contato com o suporte em contato.fitdaily@gmail.com.','classe' => 'alert-danger show']);
     }
     public function pending(Request $req){
-        dd("pending");
+        return redirect()->route('financeiro-pagamento.planos')
+        ->with('alert', ['mensagem' => 'Seu pagamento está pendente. Por favor, aguarde enquanto processamos a transação. Você será notificado quando o status for atualizado.','classe' => 'alert-warning show']);
     }
     public function extratos(){
         $extratos = Extrato::where('usuario_id', session('usuario')['id'])->orderBy('created_at', 'desc')->paginate(2);

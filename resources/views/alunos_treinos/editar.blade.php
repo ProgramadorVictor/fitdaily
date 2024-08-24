@@ -10,12 +10,12 @@
         <div class="col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-4 my-5">
             <ul class="col-12 list-unstyled background-black d-flex justify-content-center flex-wrap">
                 @forelse($exercicios_do_aluno as $exercicio)
-                    <div class="col-12 mb-4">
+                    <div class="col-12">
                         <div class="col-12 d-flex">
                             <a id="{{$exercicio->exercicios->id}}" class="d-flex mostrar_imagem col-11 text-center m-0 background-red text-decoration-none" href="#">
-                                <div class="d-flex justify-content-center align-items-center">
-                                    <i id="icoDown" class="fa fa-1x fa-caret-down text-white" aria-hidden="true"></i>
-                                    <i id="icoUp" class="fa fa-1x fa-caret-up d-none" aria-hidden="true"></i>
+                                <div class="col-1 d-flex justify-content-center align-items-center">
+                                    <i id="icoDown{{$exercicio->exercicios->id}}"" class="fa fa-1x fa-caret-down text-white" aria-hidden="true"></i>
+                                    <i id="icoUp{{$exercicio->exercicios->id}}"" class="fa fa-1x fa-caret-up d-none text-white" aria-hidden="true"></i>
                                 </div>
                                 <li class="h-100 align-items-center d-flex justify-content-center col-12 m-0 text-white fw-bolder">
                                     {{ $exercicio->exercicios->nome }}
@@ -29,7 +29,7 @@
                                 </button>
                             </form>
                         </div>
-                        <div class="col-12 d-flex m-0 p-0 mb-4">
+                        <div class="col-12 d-flex m-0 p-0 mb-3">
                             <img class="click_{{$exercicio->exercicios->id}} d-none exercicio-imagem" src="{{isset($exercicio->exercicios->imagem) ? asset('storage/'.$exercicio->exercicios->imagem) : ''}}" >
                         </div>
                         <div class="row my-2 click_{{$exercicio->exercicios->id}} d-none">
@@ -66,10 +66,10 @@
     <script>
         $('.mostrar_imagem').on('click', function(){
             var id = $(this).attr('id');
-            alert(id);
             var exercicio_imagem = $('.click_'+id);
-            console.log(exercicio_imagem);
             $(exercicio_imagem).toggleClass('d-none');
+            $('#icoDown'+id).toggleClass('d-none');
+            $('#icoUp'+id).toggleClass('d-none');
         });
         $('#abrirFormulario').on('click', function(){
             $('#mostrarFormulario').toggleClass('d-none');

@@ -8,17 +8,16 @@
     </style>
     <section class="col-12 d-flex justify-content-center px-2 px-md-0">
         <div class="col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-4 my-5">
-            <a class="col-12 btn btn-success border-0 text-white fw-bolder border-radius-none" href="{{route('exercicio.create')}}">
+            <a class="col-12 btn btn-success border-0 text-white fw-bolder border-radius-none mb-4" href="{{route('exercicio.create')}}">
                 Adicionar
             </a>
-            <p class="d-flex "><mark>Resolver problema ao fechar e abrir um exercicio. Ao clicar em 1 exercicio o outro deve fechar automaticamente, porém tem algum bug, olhe para as setas ao fechar e abrir um dos exercicios</mark></p>
-            <ul class="col-12 p-0 list-unstyled background-black d-flex justify-content-center flex-wrap">
+            <ul class="col-12 p-0 list-unstyled background-black d-flex justify-content-center flex-wrap mini-screen">
                 @forelse($exercicios as $exercicio)
                     <li class="col-12 d-block text-center mb-0 background-red mb-3">
                         <a id="{{$exercicio->id}}" href="#" class="exercicio p-1 text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end">
                             <p class="d-flex justify-content-center col-12 m-0 ps-2">{{$exercicio->nome}}</p>
-                            <i id="icoDown" class="fa fa-caret-down" aria-hidden="true"></i>
-                            <i id="icoUp" class="fa fa-caret-up d-none" aria-hidden="true"></i>
+                            <i id="icoDown{{$exercicio->id}}" class="fa fa-caret-down" aria-hidden="true"></i>
+                            <i id="icoUp{{$exercicio->id}}" class="fa fa-caret-up d-none" aria-hidden="true"></i>
                         </a>
                         <div id="imagem_{{$exercicio->id}}" class="imagem d-none col-12">
                             <div class="col-12 d-flex justify-content-center">
@@ -45,17 +44,18 @@
 @endsection
 @section('script')
     <script>
-        $('.exercicio').on('click', function(){
+        $('.exercicio').on('click',function(){
             var id = $(this).attr('id');
-            var imagem = 'imagem_'+id;
-            $('#'+imagem).toggleClass('d-none');
-            $('#icoUp').toggleClass('d-none');
-            $('#icoDown').toggleClass('d-none');
-            $('.imagem').each(function() {
+            var elemento = $('#imagem_'+id);
+            if(elemento.hasClass('d-none')){
                 $('.imagem').addClass('d-none');
-            });
-            if($('#'+imagem).hasClass('d-none')){
-                $('#'+imagem).removeClass('d-none');
+                elemento.removeClass('d-none');
+                $('#icoDown'+id).toggleClass('d-none');
+                $('#icoUp'+id).toggleClass('d-none');
+            }else{
+                $('#icoDown'+id).toggleClass('d-none');
+                $('#icoUp'+id).toggleClass('d-none');
+                elemento.addClass('d-none');
             }
         });
     </script>

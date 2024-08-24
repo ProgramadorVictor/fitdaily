@@ -57,7 +57,7 @@ class CadastroRequest extends FormRequest
             'confirmacaodesenha.required' => 'O campo de confirmação de senha é requerido.',
             'confirmacaodesenha.same' => 'O campo de confirmação de senha tem que ser igual a senha.',
             'nascimento.required' => 'O campo nascimento é requerido.',
-            'nascimento.date' => 'O campo nascimento é inválido.',
+            'nascimento.date_format' => 'O campo nascimento é inválido.',
         ];
     }
 }

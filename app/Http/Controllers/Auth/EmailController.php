@@ -47,7 +47,7 @@ class EmailController extends Controller
             $usuario->save();
         }catch(Exception $e){
             return redirect()->route('login.index')
-            ->with('alert', ['mensagem' => 'Ocorreu um erro inesperado', 'classe' => 'alert-danger show']);  
+            ->with('alert', ['mensagem' => 'Ocorreu um erro inesperado, por favor reporte ao email contato.fitdaily@gmail.com', 'classe' => 'alert-danger show']);  
         }
         return redirect()->route('login.index')
         ->with('alert', ['mensagem' => 'E-mail verificado com sucesso!', 'classe' => 'alert-success show']);
@@ -84,7 +84,7 @@ class EmailController extends Controller
             ->with('alert', ['mensagem' => 'O email foi enviado com sucesso', 'classe' => 'alert-success show']);  
         }catch(Exception $e){
             return redirect()->route('login.index')
-            ->with('alert', ['mensagem' => 'Ocorreu um erro inesperado', 'classe' => 'alert-danger show']);  
+            ->with('alert', ['mensagem' => 'Ocorreu um erro inesperado, por favor reporte ao email contato.fitdaily@gmail.com', 'classe' => 'alert-danger show']);  
         }
     }
 }

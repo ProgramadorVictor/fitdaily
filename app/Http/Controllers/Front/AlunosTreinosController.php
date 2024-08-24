@@ -13,7 +13,7 @@ use App\Models\Treino;
 class AlunosTreinosController extends Controller
 {
     public function index(){
-        $alunos = Usuario::all();
+        $alunos = Usuario::orderBy('nome','asc')->get();
         return view('alunos_treinos.index', ['alunos' => $alunos]);
     }
     public function treino(Usuario $aluno){
@@ -57,7 +57,7 @@ class AlunosTreinosController extends Controller
             ->with('alert', ['mensagem'=>'Treino adicionado com sucesso','classe' => 'alert-success show']);
         }catch(Exception $e){
             return redirect()->route('alunos-treinos.aluno', ['aluno' => $aluno])
-            ->with('alert', ['mensagem'=>'Ocorreu um problema inesperado','classe' => 'alert-danger show']);
+            ->with('alert', ['mensagem'=>'Ocorreu um erro inesperado, por favor reporte ao email contato.fitdaily@gmail.com','classe' => 'alert-danger show']);
         }
     }
     public function apagarTreino(Treino $treino){

@@ -17,14 +17,14 @@
                         @csrf
                         <input type="hidden" name="token" value="{{$token}}">
                         <div class="input-group flex-nowrap mt-3">
-                            <input id="senha_1" value="{{ old('senha') }}" name="senha" type="password" class="form-control rounded-0 ps-2 fw-bolder border-dark input-senha" placeholder="Digite sua nova Senha">
+                            <input id="senha_1" value="{{ old('senha') }}" name="senha" type="password" class="form-control rounded-0 ps-2 fw-bolder border border-2 border-dark input-senha" placeholder="Digite sua nova Senha">
                             <span class="p-1 border-dark input-group-text border-none bg-white border-radius-none border border-2 span-senhas" onclick="verSenha()">
                                 <i class="fa fa-1x fa-eye senha_1" aria-hidden="true"></i>
                                 <i class="fa fa-1x fa-eye-slash d-none senha_1" aria-hidden="true"></i>
                             </span>
                         </div>
                         <div class="input-group flex-nowrap mt-3">
-                            <input id="senha_2" value="{{old('senha_confirmation')}}" name="senha_confirmation" type="password" class="form-control rounded-0 ps-2 fw-bolder border-dark input-senha" placeholder="Confirme a Senha">
+                            <input id="senha_2" value="{{old('senha_confirmation')}}" name="senha_confirmation" type="password" class="form-control rounded-0 ps-2 fw-bolder border border-2 border-dark input-senha" placeholder="Confirme a Senha">
                             <span class="p-1 border-dark input-group-text border-none bg-white border-radius-none border border-2 span-senhas" onclick="verSenhaConfirmacao()">
                                 <i class="fa fa-1x fa-eye senha_2" aria-hidden="true"></i>
                                 <i class="fa fa-1x fa-eye-slash d-none senha_2" aria-hidden="true"></i>

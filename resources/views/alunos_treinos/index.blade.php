@@ -8,7 +8,7 @@
     </style>
     <section class="col-12 d-flex justify-content-center px-2 px-md-0">
         <div class="col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-4 my-5">
-            <ul class="col-12 p-0 list-unstyled background-black d-flex justify-content-center flex-wrap">
+            <ul class="col-12 p-0 list-unstyled background-black d-flex justify-content-center flex-wrap mini-screen">
                 @forelse($alunos as $aluno)
                     <li class="col-12 d-block text-center mb-0 background-red mb-3">
                         <a href="{{route('alunos-treinos.aluno', ['aluno' => $aluno])}}" class="p-1 text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end">

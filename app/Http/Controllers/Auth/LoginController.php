@@ -19,7 +19,6 @@ class LoginController extends Controller
 {
     public function index()
     {
-        session()->forget('usuario'); session()->forget('admin');
         return view('auth.login.index')->with('alert', ['mensagem' => '', 'classe' => '']);
     }
     public function logar(Request $req)
@@ -73,7 +72,7 @@ class LoginController extends Controller
             }
         }catch(Exception $e){
             return redirect()->route('login.index')
-            ->with('alert', ['mensagem' => 'Ocorreu um erro inesperado.', 'classe' => 'alert-danger show']);
+            ->with('alert', ['mensagem' => 'Ocorreu um erro inesperado, por favor reporte ao email contato.fitdaily@gmail.com', 'classe' => 'alert-danger show']);
         }
     }
     public function logout()
@@ -109,7 +108,7 @@ class LoginController extends Controller
             return view('auth.login.recuperar-senha')->with('token', $token);;
         }catch(Exception $e){
             return redirect()->route('cadastro.index')
-            ->with('alert', ['mensagem' => 'Ocorreu um erro inesperado.', 'classe' => 'alert-danger show']);
+            ->with('alert', ['mensagem' => 'Ocorreu um erro inesperado, por favor reporte ao email contato.fitdaily@gmail.com', 'classe' => 'alert-danger show']);
         }
     }
     public function senhaAlterada(SenhaAlteradaRequest $req)
@@ -121,7 +120,7 @@ class LoginController extends Controller
             $senha->save();
             $senha->usuario->save();
         }catch(Exception $e){
-            return redirect()->route('login.index')->with('alert', ['mensagem' => "Ocorreu um erro inesperado", 'classe' => 'alert-danger show']);
+            return redirect()->route('login.index')->with('alert', ['mensagem' => "Ocorreu um erro inesperado, por favor reporte ao email contato.fitdaily@gmail.com", 'classe' => 'alert-danger show']);
         }
         return redirect()->route('login.index')->with('alert', ['mensagem' => "Sua senha foi alterada com sucesso", 'classe' => 'alert-success show']);
     }

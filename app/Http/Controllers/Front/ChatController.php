@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Http\Controllers\Front;
+
+use App\Http\Controllers\Controller;
+use App\Events\MensagemEvent;
+use Illuminate\Http\Request;
+use App\Models\Mensagem;
+use App\Models\Usuario;
+use App\Models\Imagem;
+use App\Models\Aviso;
+class ChatController extends Controller
+{
+    public function chat(){
+        $mensagens = Mensagem::orderBy('created_at','desc')->take(20)->get();
+        $mensagens = $mensagens->sortBy('created_at'); //sortByDesc
+        return view('chat.index', ['mensagens' => $mensagens]);
+    }
+    public function enviarMensagem(Request $request)
+    {
+        $id = session('usuario')['id'];
+        $usuario = Usuario::find($id)->only(['id', 'celular', 'email', 'nome', 'sobrenome','tipo_id', 'nascimento']);
+        $imagem = Imagem::where('usuario_id', $id)->first()->only(['id','usuario_id','imagem']);
+        $mensagem = $request->input('mensagem');
+        Mensagem::create([
+            'usuario_id' => $id,
+            'conteudo' => $mensagem,
+        ]);
+        $dados = [
+            'imagem' => $imagem,
+            'mensagem' => $mensagem,
+            'usuario' => $usuario,
+        ];
+        event(new MensagemEvent($dados));
+        return response()->json(['status' => 'Mensagem enviada!']);
+    }
+}
