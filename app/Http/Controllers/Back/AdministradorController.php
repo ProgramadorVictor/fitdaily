@@ -19,15 +19,13 @@ class AdministradorController extends Controller
     }
     public function autenticar(AdministradorRequest $req){
         $admin = Administrador::where('cpf', $req->input('cpf'))->first();
-        if(!$admin){
-            return redirect()->route('admin.login')
-            ->with('alert', ['mensagem' => 'Conta desativada ou administrador não encontrado','classe' => 'alert-danger show']);
-        }
         if(Hash::check($req->input('senha'), $admin->senha)){
             Session::put('admin', $admin->getAttributes());
+            return redirect()->route('admin.principal')
+            ->with('alert', ['mensagem' => 'Autenticado com sucesso','classe' => 'alert-success show']);
         }
-        return redirect()->route('admin.principal')
-        ->with('alert', ['mensagem' => 'Autenticado com sucesso','classe' => 'alert-success show']);
+        return redirect()->route('admin.login')
+        ->with('alert', ['mensagem' => 'Conta desativada ou administrador não encontrado','classe' => 'alert-danger show']);
     }
     public function principal(){
         $menus =
