@@ -48,7 +48,7 @@
                     var html = '<li class="mensagem mb-2">' +
                         '<div class="col-12 background-black btn-border">' +
                         '<img class="chat-icone border border-2 border-dark mt-1 ms-1" src="' + src + '" alt="">' +
-                        '<strong class="text-white fw-bolder" style="word-break: break-all">' + usuario.nome + ' ' + usuario.sobrenome + ' - ' + (usuario.tipo_id == 1 ? "Aluno" : "Treinador") + ':</strong><br>' +
+                        '<strong class="text-white fw-bolder ps-1" style="word-break: break-all">' + usuario.nome + ' ' + usuario.sobrenome + ' - ' + (usuario.tipo_id == 1 ? "Aluno" : "Treinador") + ':</strong><br>' +
                         '<span class="text-white ps-5">' + mensagem + '</span>' +
                         '</div>' +
                         '</li>';

@@ -19,7 +19,7 @@
     </main>
     <footer class="col-12 d-flex justify-content-center">
         <form class="col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-3 d-flex">
-            <input type="text" id="txtMensagem" placeholder="Lembre-se de corrigir o XSRF" required class="form-control border-radius-none">
+            <input type="text" id="txtMensagem" placeholder="Envie uma mensagem" required class="form-control border-radius-none">
             <button type="submit" class="btn background-black text-white border-radius-none">Enviar</button>
         </form>
     </footer>
