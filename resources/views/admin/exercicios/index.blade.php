@@ -7,7 +7,7 @@
         }
     </style>
     <section class="col-12 d-flex justify-content-center px-2 px-md-0">
-        <div class="col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-4 my-5">
+        <div class="col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-4 my-5 mini-screen">
             <a class="col-12 btn btn-success border-0 text-white fw-bolder border-radius-none mb-4" href="{{route('exercicio.create')}}">
                 Adicionar
             </a>

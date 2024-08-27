@@ -2,8 +2,8 @@
 @section('titulo', 'Chat')
 @section('body')
     <section class="col-12 d-flex justify-content-center px-2 px-md-0">
-        <div class="col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-3 d-flex justify-content-center my-2">
-            <ul id="mensagens" class="col-12 mini-screen list-unstyled">
+        <div class="col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-3 d-flex justify-content-center my-2 mini-screen">
+            <ul id="mensagens" class="col-12 list-unstyled">
                 @foreach($mensagens as $mensagem)
                     <li class="mensagem mb-2">
                         <div class="col-12 background-black btn-border">
