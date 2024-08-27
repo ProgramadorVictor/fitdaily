@@ -79,7 +79,6 @@
                 <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
                     <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="{{route('usuario.perfil')}}">
                         <p class="col-11 m-0 text-center">PERFIL</p>
-                        <i class="fa fa-user text-white" aria-hidden="true"></i>
                     </a>
                 </li>
                 <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
@@ -101,7 +100,6 @@
                     <li class="col-12 text-center border border-2 border-dark mb-3 p-1 background-red btn-border">
                         <a class="text-white text-decoration-none fw-bolder d-flex align-items-center justify-content-end" href="{{route('alunos-treinos.index')}}">
                             <p class="col-11 m-0">ALUNOS E TREINOS</p>
-                            <i class="fa fa-id-card text-white" aria-hidden="true"></i>
                         </a>
                     </li>
                 @endif
