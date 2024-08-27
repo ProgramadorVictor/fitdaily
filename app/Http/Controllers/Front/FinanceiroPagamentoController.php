@@ -43,14 +43,6 @@ class FinanceiroPagamentoController extends Controller
         return redirect($preference->init_point);
     }
     public function success(Request $req) {
-        $regras = [
-            'collection_id' => 'unique:pagamentos,collection_id',
-            'payment_id' => 'unique:pagamentos,payment_id',
-        ];
-        $feedback = [
-            'unique' => "Algo está errado no pagamento, por favor entre em contato com o suporte",
-        ];
-        $req->validate($regras, $feedback);
         if(!($req->input('collection_id') != $req->input('payment_id'))){
             try{
                 $dados = [
@@ -71,7 +63,7 @@ class FinanceiroPagamentoController extends Controller
                 } else {
                     $data_inicio_academia = Carbon::now();
                 }
-                if (session('assinatura') && $dados['status'] == 'approved') {
+                if (session('produto')['id'] && $dados['status'] == 'approved') {
                     $data_fim_academia = $data_inicio_academia->copy()->addDays($assinatura->duracao);
                 }
                 if (isset($data_fim_academia)) {
@@ -87,7 +79,7 @@ class FinanceiroPagamentoController extends Controller
                     $extrato->save();
                     $extrato->usuario->save();
                 }
-                $req->session()->forget('produto');
+                // $req->session()->forget('produto');
                 return redirect()->route('financeiro-pagamento.planos')
                 ->with('alert', ['mensagem' => 'Pagamento aprovado com sucesso. Sua assinatura foi atualizada.','classe' => 'alert-success show']);
             }catch(Exception $e){
