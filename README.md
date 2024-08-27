@@ -47,38 +47,58 @@ Para rodar o projeto em sua máquina local, siga os passos abaixo:
 
 5. **Configure a chave da API do Mercado Pago:**
    Abra o arquivo `.env` e coloque a chave da API do Mercado Pago
-   MERCADO_PAGO_ACCESS_TOKEN=sua_chave_aqui
-
+      ```
+     MERCADO_PAGO_ACCESS_TOKEN=sua_chave_aqui
+     ```
 3. **Instale as dependências:**
     Abra o terminal e digite o comando abaixo:
-    composer install
-
-4. **Gere a chave de criptografia da Aplicação**
+   ```
+     composer install
+     ```
+5. **Gere a chave de criptografia da Aplicação**
     Abra o terminal e digite o comando abaixo:
-    php artisan key:generate
-
-5. **Configure o seu banco de dados:**
+   ```
+     php artisan key:generate
+     ```
+6. **Configure o seu banco de dados:**
     No arquivo `.env` configure o seu banco de dados
-    DB_DATABASE=nome_do_banco DB_USERNAME=usuario_do_banco DB_PASSWORD=senha_do_banco
-
-6. **Gerando as tabelas e colunas no banco de dados:**
+   ```
+      DB_DATABASE=nome_do_banco
+      DB_USERNAME=usuario_do_banco
+      DB_PASSWORD=senha_do_banco
+     ```
+8. **Gerando as tabelas e colunas no banco de dados:**
     Abra o terminal e digite o comando abaixo:
-    php artisan migrate --seed
+      ```
+     php artisan migrate --seed
+     ```
 *Nota: A seeder contém usuarios gerados.*
 
-7. **Configurando o broadcasting e disparo assincrono:**
+10. **Configurando o broadcasting e disparo assincrono:**
     Faça essas modificações no arquivo `.env`:
-    QUEUE_CONNECTION=database BROADCAST_DRIVER=pusher
-
-8. **Configure o disparo de email:**
+      ```
+     QUEUE_CONNECTION=database
+     BROADCAST_DRIVER=pusher
+     ```
+12. **Configure o disparo de email:**
     Modifique os atributos para dispara o email na `.env`:
-    MAIL_MAILER=your_mail_service MAIL_HOST=your_mail_host MAIL_PORT=your_mail_port MAIL_USERNAME=your_email_username MAIL_PASSWORD=your_email_password MAIL_ENCRYPTION=your_email_encryption
-
-9. **Configure a API do Pusher broadcasting:**
+      ```
+      MAIL_MAILER=servico_de_email
+      MAIL_HOST=seu_host_de_email
+      MAIL_PORT=porta_do_email
+      MAIL_USERNAME=seu_endereço_de_email
+      MAIL_PASSWORD=sua_senha_de_app
+      MAIL_ENCRYPTION=criptografia_email
+     ```
+14. **Configure a API do Pusher broadcasting:**
     Modifique o arquivo  `.env` para pusher broadcasting:
-    PUSHER_APP_ID=your_pusher_app_id PUSHER_APP_KEY=your_pusher_app_key PUSHER_APP_SECRET=your_pusher_app_secret PUSHER_APP_CLUSTER=your_pusher_app_cluster
-
-11. **Começe o servidor e os jobs:**
+      ```
+      PUSHER_APP_ID=sua_id_pusher
+      PUSHER_APP_KEY=sua_key_pusher
+      PUSHER_APP_SECRET=sua_secret_pusher
+      PUSHER_APP_CLUSTER=sua_cluster_pusher
+     ```
+16. **Começe o servidor e os jobs:**
     Abra dois terminal e digite os comandos abaixo em cada.   
      ```
      php artisan serve
