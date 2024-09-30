@@ -12,7 +12,7 @@
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
         "laravellegends/pt-br-validator": "^11.0",
-        "mercadopago/dx-php": "^2.6",
+        "mercadopago/dx-php": "^3.0",
         "pusher/pusher-php-server": "^7.2",
         "symfony/mailer": "*"
     },
