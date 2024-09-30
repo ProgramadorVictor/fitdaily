@@ -1,28 +1,60 @@
-html body{
-    background-color: #DC2F02 !important;
-    height: 100vh;
+:root{
+    --black: #3E3939;
+    --red: #DC2F02;
 }
+html body{
+    background-color: #DC2F02;
+    height: 100dvh;
+}
+a{
+    text-decoration: none;
+    cursor: pointer; /* Para links sem href */
+}
+a:hover{
+    text-decoration: underline;
+    color: rgb(0, 255, 255);
+}
+.logo{
+    width: 55px;
+    height: 55px;
+}
+.bg-custom-black{
+    background-color: var(--black) !important;
+}
+.bg-custom-red{
+    background-color: var(--red) !important;
+}
+.border-custom-black{
+    border-color: var(--black) !important;
+}
+.input-group{
+    margin-bottom: 1.1rem;
+}
+.form-control{
+    padding-left: 0.8rem;
+    border: 2px;
+    border-color: var(--black);
+}
+
+
+
+
+
+/* main{
+    box-sizing: content-box;
+} */
+/**/
 *::-webkit-scrollbar {
     display: none;
 }
-.background-black{
-    background-color: #3E3939 !important;
-}
-.background-red{
-    background-color: #DC2F02 !important;
-}
-.text-cyan{
-    color:#04F0FF !important;
-}
+
 .disable{
     pointer-events: none !important;
 }
-.btn-border{
+/* .b-1{
     border-radius: 0.5rem !important;
-}
-.border-black{
-    border-color:#3E3939 !important;
-}
+} */
+
 .icon-foto{
     width: 10rem;
     height: 10rem;

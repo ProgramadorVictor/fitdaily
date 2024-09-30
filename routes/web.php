@@ -59,4 +59,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function(){
 });
 //Rota de Fallback
 Route::get('/', function(){return redirect()->route('login.index');});
-Route::fallback(function(){return redirect()->route('login.index')->with('alert',['mensagem' => "A rota acessada no momento não existe ou foi desabilitada", 'classe' => 'alert-danger show']);});
+
+// Route::fallback(function(){return redirect()->route('login.index')->with('alert',['mensagem' => "A rota acessada no momento não existe ou foi desabilitada", 'classe' => 'alert-danger show']);});

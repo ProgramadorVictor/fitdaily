@@ -16,9 +16,10 @@ use Request;
 class CadastroController extends Controller
 {
     public function index(){
-        return view('auth.cadastro.index')->with('alert', ['mensagem' => '', 'classe' => '']);
+        return view('auth.cadastro.index');
     }
     public function cadastrar(CadastroRequest $request){
+        dd($request->all());
         $ip = gethostbyname(gethostname()); //Pega o ip da maquina em desenvolvimento
         try{
             $validados = $request->validated();

@@ -19,7 +19,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('auth.login.index')->with('alert', ['mensagem' => '', 'classe' => '']);
+        return view('auth.login.index');
     }
     public function logar(Request $req)
     {

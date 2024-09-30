@@ -16,6 +16,9 @@
         "postcss": "^8.1.14"
     },
     "dependencies": {
+        "bootstrap": "^5.3.3",
+        "jquery": "^3.7.0",
+        "jquery-mask-plugin": "^1.14.16",
         "pusher-js": "^8.4.0-rc2"
     }
 }

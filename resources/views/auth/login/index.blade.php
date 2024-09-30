@@ -1,29 +1,27 @@
-@extends('template.login')
+@extends('template.auth')
 @section('titulo', 'Login')
 @section('body')
-    <section class="col-12 d-flex justify-content-center px-2 px-md-0">
-        <div class="col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-3 d-flex justify-content-center my-5 py-3 px-0 mx-2 border border-1 border-dark flex-wrap background-black">
-            <div class="col-12 d-flex flex-wrap">
-                <div class="col-12 d-flex justify-content-center mb-3">
-                    <img src="{{asset('logo.png')}}" style="width:55px; height:55px;">
-                </div>
-                <div class="col-12 px-2">
-                    @component('auth.login.form.form')
-                    @endcomponent
-                </div>
-            </div>
-            <div class="col-12 px-2 d-flex justify-content-end d-block">
-                <a class="text-cyan" href="{{route('cadastro.index')}}" >Precisa de uma conta na Fit Daily? Cadastre-se aqui!</a>
-            </div>
-        </div>
+    @include('components.modal.recuperar-senha')
+    <section class="col-11 col-sm-8 col-md-6 col-lg-4 col-xl-3 m-auto bg-custom-black border border-2 border-custom-black rounded-3">
+        <header class="text-center">
+            <img src="{{asset('logo.png')}}" class="logo">
+            <p class="text-white">Bem-vindo!<br>Vamos malhar?</p>
+        </header>
+        <main class="mx-2">
+            @component('auth.login.form.form')
+            @endcomponent
+        </main>
+        <footer class="mx-2">
+            <a href="#">Preciso de ajuda?</a>
+            <a href="#" id="linkModal">Esqueceu a senha?</a>
+            <a href="{{route('cadastro.index')}}">Registre-se aqui!</a>
+        </footer>
     </section>
 @endsection
 @section('script')
     <script>
-        var modal = new bootstrap.Modal( $('.modal')[0]);
-
-        $('#modal-recuperar-senha').on('click', function(){
-            modal.show();
+        $('#linkModal').on('click', function(){
+            $('#modal-recuperar-senha').modal('show');
         });
     </script>
 @endsection

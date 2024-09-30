@@ -1,24 +1,18 @@
-@extends('template.cadastro')
+@extends('template.auth')
 @section('titulo', 'Cadastro')
 @section('body')
-    <section class="col-12 d-flex justify-content-center px-2 px-md-0">
-        <div class="col-12 col-md-10 col-lg-8 col-xl-6 col-xxl-3 d-flex justify-content-center my-5 py-3 px-0 mx-2 border border-1 border-dark flex-wrap background-black">
-            <div class="col-12 d-flex flex-wrap">
-                <div class="col-12 background-black d-flex justify-content-center">
-                    <img src="{{asset('logo.png')}}" style="width:55px; height:55px;">
-                </div>
-                <div class="col-12 d-flex justify-content-center">
-                    <p class="text-white">Registre-se para se juntar a nós</p>
-                </div>
-                <div class="col-12 px-2">
-                    @component('auth.cadastro.form.form')
-                    @endcomponent
-                </div>
-            </div>
-            <div class="col-12 px-2 d-flex justify-content-end d-block">
-                <a href="{{route('login.index')}}" class="text-cyan">Você já tem uma conta? Faça login aqui!</a>
-            </div>
-        </div>
+    <section class="col-11 col-sm-8 col-md-6 col-lg-4 col-xl-3 m-auto bg-custom-black border border-2 border-custom-black rounded-3">
+        <header class="text-center">
+            <img src="{{asset('logo.png')}}" class="logo">
+            <p class="text-white">Venha nos conhecer!<br>Registre-se e junte-se a nós.</p>
+        </header>
+        <main class="mx-2">
+            @component('auth.cadastro.form.form')
+            @endcomponent
+        </main>
+        <footer class="text-center">
+            <a href="{{route('login.index')}}" class="mx-2">Já tem uma conta?<br>Clique aqui para fazer login!</a>
+        </footer>
     </section>
 @endsection
 @section('script')
