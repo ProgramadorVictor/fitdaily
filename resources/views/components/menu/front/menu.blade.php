@@ -20,11 +20,6 @@
                 <li class="nav-item">
                     <a class="nav-link fw-bolder text-white bg-custom-black btn-border" href="{{route('usuario.treinos')}}">Treinos</a>
                 </li>
-                {{-- @if(session('usuario')['tipo_id'] == 2)
-                    <li class="nav-item">
-                        <a class="nav-link fw-bolder text-white bg-custom-black btn-border border border-2 border-dark" href="{{route('alunos-treinos.index')}}">ALUNOS E TREINOS</a>
-                    </li>
-                @endif --}}
                 <li class="nav-item">
                     <a class="nav-link fw-bolder text-white bg-custom-black btn-border" href="{{route('login.logout')}}">Logout</a>
                 </li>
