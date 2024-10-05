@@ -35,7 +35,11 @@ a:hover{
     border: 2px;
     border-color: var(--black);
 }
-
+.foto{
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+}
 
 
 
@@ -43,11 +47,6 @@ a:hover{
     pointer-events: none !important;
 }
 
-.icon-foto{
-    width: 10rem;
-    height: 10rem;
-    border-radius: 50%;
-}
 .border-radius-none{
     border-radius: 0px !important;
 }

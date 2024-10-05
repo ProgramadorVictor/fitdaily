@@ -7,14 +7,10 @@
                 background-color: #3E3939 !important;
             }
             @media (min-width: 1024px) {
-                section > div.col-12.my-5{
-                    display:flex;
-                    justify-content: space-around;
-                }
                 #foto-div{
                     width: 40%;
                 }
-                .icon-foto{
+                .foto{
                     width: 20rem;
                     height: 20rem;
                     border-radius: 50%;
@@ -30,27 +26,25 @@
             }
         </style>
     @endpush
-    <section class="col-12 d-flex justify-content-center px-2 px-md-0">
-        <div class="col-12 my-5">
-            <div id="foto-div" class="d-block col-6">
-                <div class="col-12 d-flex justify-content-center">
-                    <button type="button" class="btn border-0 p-0 background-red d-flex justify-content-center icon-foto align-items-center">
-                        @if($imagem != null)
-                            <img id="foto-perfil" src="{{ asset('storage/'. session('usuario')['imagem'])}}" class="icon-foto disable">
-                        @else
-                            <i id="foto-padrao" class="fa fa-user fa-3x text-white disable" aria-hidden="true"></i>
-                        @endif
-                    </button>
-                </div>
-                <div class="text-center">
-                    <p class="text-white d-block m-b-1"> Olá, Como vai? <br> {{auth()->user()->nome_completo}}</p>
-                </div>
+    <section class="col-12">
+        <div id="foto-div m-auto">
+            <div class="col-12 text-center">
+                <button type="button" class="btn bg-custom-red foto">
+                    @if($imagem != null)
+                        <img id="foto-perfil" src="{{ asset('storage/'. session('usuario')['imagem'])}}" class="foto disable">
+                    @else
+                        <i id="foto-padrao" class="fa fa-user fa-3x text-white disable" aria-hidden="true"></i>
+                    @endif
+                </button>
             </div>
-            <div class="col-6 d-flex justify-content-center align-items-center px-2">
-                <div class="col-12">
-                    {{-- @component('usuario.form.form')
-                    @endcomponent --}}
-                </div>
+            <p class="text-center text-white">
+                Olá, Como vai? <br> {{auth()->user()->nome_completo}}
+            </p>
+        </div>
+        <div class="col-6 d-flex justify-content-center align-items-center px-2">
+            <div class="col-12">
+                {{-- @component('usuario.form.form')
+                @endcomponent --}}
             </div>
         </div>
     </section>
