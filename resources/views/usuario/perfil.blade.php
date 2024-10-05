@@ -1,33 +1,35 @@
 @extends('template.front')
 @section('titulo', 'Perfil')
 @section('body')
-    <style>
-        html body{
-            background-color: #3E3939 !important;
-        }
-        @media (min-width: 1024px) {
-            section > div.col-12.my-5{
-                display:flex;
-                justify-content: space-around;
+    @push('style')
+        <style>
+            html body{
+                background-color: #3E3939 !important;
             }
-            #foto-div{
-                width: 40%;
+            @media (min-width: 1024px) {
+                section > div.col-12.my-5{
+                    display:flex;
+                    justify-content: space-around;
+                }
+                #foto-div{
+                    width: 40%;
+                }
+                .icon-foto{
+                    width: 20rem;
+                    height: 20rem;
+                    border-radius: 50%;
+                }
             }
-            .icon-foto{
-                width: 20rem;
-                height: 20rem;
-                border-radius: 50%;
+            @media (max-width: 1023px) {
+                #foto-div {
+                    width: 100% !important;
+                }
+                section > div > div.col-6.d-flex.justify-content-center.align-items-center{
+                    width: 100%;
+                }
             }
-        }
-        @media (max-width: 1023px) {
-            #foto-div {
-                width: 100% !important;
-            }
-            section > div > div.col-6.d-flex.justify-content-center.align-items-center{
-                width: 100%;
-            }
-        }
-    </style>
+        </style>
+    @endpush
     <section class="col-12 d-flex justify-content-center px-2 px-md-0">
         <div class="col-12 my-5">
             <div id="foto-div" class="d-block col-6">
@@ -41,8 +43,7 @@
                     </button>
                 </div>
                 <div class="text-center">
-                    <p class="text-white d-block m-b-1"> Olá, Como vai?</p>
-                    <p class="text-white d-block fw-bolder m-0">{{auth()->user()->nome_completo}}</p>
+                    <p class="text-white d-block m-b-1"> Olá, Como vai? <br> {{auth()->user()->nome_completo}}</p>
                 </div>
             </div>
             <div class="col-6 d-flex justify-content-center align-items-center px-2">
@@ -57,7 +58,6 @@
 @section('script')
     <script>
         $(document).ready(function(){
-            // var cont = 0;
             var campo_email = true;
             ativaCampo = () => {
                 $('input[name="email"]').removeClass('disabled');
@@ -65,8 +65,6 @@
                 $('#lock').addClass('d-none');
             }
             $('input[name="email"]').on('click', function(){
-                // cont++;
-                // if(cont == 1)
                 if(campo_email){
                     $('#avisoEmail').removeClass('d-none');
                     $('input[name="email"]').addClass('disabled');
