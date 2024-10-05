@@ -2,18 +2,23 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Events\RecuperarSenhaEvent;
 use App\Http\Controllers\Controller;
-use Exception;
-use Illuminate\Http\Request;
-use App\Models\Usuario;
-use App\Models\Imagem;
+use App\Http\Requests\LogarUsuarioRequest;
+use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
-use App\Models\Senha;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\RecuperarSenhaMail;
 use App\Http\Requests\SenhaAlteradaRequest;
+use Illuminate\Http\Request;
+use App\Models\Imagem;
+use App\Models\Usuario;
+use App\Events\VerificarEmailEvent;
+use App\Http\Message;
+use App\Models\Email;
+use App\Models\Senha;
+use Exception;
+
 
 class LoginController extends Controller
 {
@@ -21,97 +26,57 @@ class LoginController extends Controller
     {
         return view('auth.login.index');
     }
-    public function logar(Request $req)
+    public function logar(LogarUsuarioRequest $request)
     {
+        $validated = $request->validated();
+        $credenciais = [
+            'cpf' => $validated['cpf'],
+            'password' => $validated['senha']
+        ];
+        if(Auth::attempt($credenciais) == false){
+            return Message::danger('Usuario ou senha incorretos.', 'login.index')->withInput();
+        }
         try{
-            $cpf = $req->cpf;
-            $senha = $req->senha;
-            $usuario = Usuario::where('cpf', $cpf)->first();
-            if($usuario && Hash::check($senha, $usuario->senha)){
-                $regras = [
-                    'cpf' => 'required|cpf',
-                    'senha' => 'required'
-                ];
-                $feedback = [
-                    'cpf.required' => "O campo usuario deve ser preenchido.",
-                    'cpf.cpf' => "O CPF digitado é inválido.",
-                    'senha.required' => "O campo de senha deve ser preenchido."
-                ];
-                //Cpfs gerados pela seeder
-                $acesso_liberado = [
-                    '999.999.999-99',
-                    '000.000.000-00',
-                ];
-                $acesso = false;
-                foreach($acesso_liberado as $liberar){
-                    if($req->cpf == $liberar){
-                        $acesso = true;
-                        break;
-                    }
-                }
-                if(!$acesso){
-                    $req->validate($regras, $feedback);
-                }
-                //Fim do código.
-                //Primeiro login
-                if(!Imagem::where('usuario_id', $usuario->id)->first()){
-                    $imagem = new Imagem();
-                    $imagem->usuario_id = $usuario->id;
-                    $imagem->save();
-                }
-                //Fim primeiro login
-                $imagem = Imagem::where('usuario_id', $usuario->id)->first();
-                $sessao = $usuario->toArray();
-                $sessao['imagem'] = str_replace('public/', '', $imagem->imagem);
-                Session::put("usuario", $sessao);
-                return redirect()->route('tela-principal')
-                ->with('alert', ['mensagem' => "Seja bem-vindo (a), ". session('usuario')['nome']." ".session('usuario')['sobrenome'], 'classe' => 'alert-success show']);  
-            }else{
-                return redirect()->route('login.index')
-                ->with('alert', ['mensagem' => 'Usuario ou senha incorretos', 'classe' => 'alert-danger show']);
-            }
-        }catch(Exception $e){
-            return redirect()->route('login.index')
-            ->with('alert', ['mensagem' => 'Ocorreu um erro inesperado, por favor reporte ao email contato.fitdaily@gmail.com', 'classe' => 'alert-danger show']);
+            Imagem::firstOrCreate(['usuario_id' => auth()->user()->id]);
+            return Message::success('Seja bem vindo (a) ','tela-principal', auth()->user()->nome_completo);
+        }catch(QueryException $e){
+            return Message::exception($e->getMessage(), 'login.index');
         }
     }
     public function logout()
     {
-        session()->forget("usuario");
-        return redirect()->route('login.index')
-        ->with('alert', ['mensagem' => "Aguardamos você novamente, Volte mais tarde, estamos esperando!",'classe' => 'alert-success show']);  
+        auth()->logout();
+        return Message::success('Aguardamos você novamente, Volte mais tarde, estamos esperando!','login.index');
     }
-    public function recuperarSenha(Request $request)  //Código é bem parecido com EmailController@verificar
-    {
-        try{
-            $ip = gethostbyname(gethostname()); //ótimo para ambiente de desenvolvimento.
-            // $ip = $request->ip();
-            if(!$request->get("token")) {
-                return redirect()->route('login.index')
-                    ->with('alert', ['mensagem' => 'Token não fornecido.', 'classe' => 'alert-danger show']);
-            }
-            $token = $request->get("token");
-            $senha = Senha::where('token', $token)->first();
-            if(!$senha) {
-                return redirect()->route('login.index')
-                ->with('alert', ['mensagem' => 'O token fornecido é inválido.', 'classe' => 'alert-danger show']);
-            }
-            $ultima_solicitacao = $senha->updated_at;
-            $usuario = $senha->usuario;
-            if($ultima_solicitacao->diffInMinutes(now()) > 60){
-                $senha->token = Str::random(60);
-                $senha->save();
-                Mail::to($usuario->email)->send(new RecuperarSenhaMail($usuario, $ip));
-                return redirect()->route('login.index')
-                ->with('alert', ['mensagem' => 'O token foi invalidado. Um e-mail foi enviado, favor verificar sua caixa de entrada!', 'classe' => 'alert-danger show']);
-            }
-            return view('auth.login.recuperar-senha')->with('token', $token);;
-        }catch(Exception $e){
-            return redirect()->route('cadastro.index')
-            ->with('alert', ['mensagem' => 'Ocorreu um erro inesperado, por favor reporte ao email contato.fitdaily@gmail.com', 'classe' => 'alert-danger show']);
+    public function verificar(Request $request){
+        $request->validate([
+            'token' => 'required|min:60|max:60'
+        ],[
+            'required' => 'O campo :attribute é requerido.'
+        ]);
+        $token = $request->input('token');
+        $email = Email::buscarToken($token)->first();
+        if($email){
+            $usuario = $email->usuario;
+            $usuario->email_verificado = now();
+            $usuario->save();
+            return Message::success('Email verificado com sucesso!','login.index');
         }
+        return Message::success('Token é inválido!','alert-success show');
     }
-    public function senhaAlterada(SenhaAlteradaRequest $req)
+    public function recuperar(Request $request) 
+    {
+        $email = $request->input('email');
+        $usuario = Usuario::where('email', $email)->first();
+        if(!$usuario){
+            return Message::danger('O usuario não existe.', 'login.index');
+        }
+        if(is_null($usuario->email_verificado)){
+            return $this->emailNaoVerificado($usuario);
+        }
+        return $this->recuperarSenha($usuario);
+    }
+    public function alterarSenha(SenhaAlteradaRequest $req)
     {
         try{
             $senha = Senha::where('token', $req->input('token'))->first();
@@ -120,8 +85,37 @@ class LoginController extends Controller
             $senha->save();
             $senha->usuario->save();
         }catch(Exception $e){
-            return redirect()->route('login.index')->with('alert', ['mensagem' => "Ocorreu um erro inesperado, por favor reporte ao email contato.fitdaily@gmail.com", 'classe' => 'alert-danger show']);
+            return Message::exception($e->getMessage(), 'login.index');
         }
-        return redirect()->route('login.index')->with('alert', ['mensagem' => "Sua senha foi alterada com sucesso", 'classe' => 'alert-success show']);
+        return Message::success('Sua senha foi alterada com sucesso!','login.index');
+    }
+    /*
+    |--------------------------------------------------------------------------
+    | Abaixos são funções que estão dentro dos métodos do próprio controller.
+    |--------------------------------------------------------------------------
+    */
+    private function emailNaoVerificado($usuario){
+        $email = $usuario->emails()->first();
+        $email->email_token = Str::random(60);
+        $email->save();
+        $dados = [
+            'nome_completo' => $usuario->nome_completo,
+            'email' => $usuario->email,
+            'token' => $email->email_token
+        ];
+        event(new VerificarEmailEvent($dados));
+        return Message::danger('O seu email não foi verificado, verifique a caixa de email.', 'login.index');
+    }
+    private function recuperarSenha($usuario){
+        $senha = $usuario->senhas()->first();
+        $senha->token = Str::random(60);
+        $senha->save();
+        $dados = [
+            'nome_completo' => $usuario->nome_completo,
+            'email' => $usuario->email,
+            'token' => $senha->token
+        ];
+        event(new RecuperarSenhaEvent($dados));
+        return Message::success('Foi enviado um email para recuperação de senha!','login.index');
     }
 }

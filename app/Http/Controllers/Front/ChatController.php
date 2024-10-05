@@ -19,8 +19,6 @@ class ChatController extends Controller
     public function enviarMensagem(Request $request)
     {
         $mensagem = filter_input(INPUT_POST, 'mensagem', FILTER_SANITIZE_SPECIAL_CHARS);
-        // $mensagem = htmlspecialchars($request->input('mensagem'), ENT_QUOTES, 'UTF-8');
-        //Duas formas de resolver o mesmo problema acima não sei a diferença ainda entre as duas, mas uma é usado no Laravel a de baixo e uma é usada no PHP a de cima.
         $regras = [
             'mensagem' => 'required',
         ];

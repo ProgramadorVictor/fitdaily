@@ -1,5 +1,5 @@
 @component('mail::message')
-# Verificação de Email
+# Verificação de Email, {{$nome}}
 
 Recebemos um pedido para verificar seu endereço de email. Se você fez essa solicitação, por favor, clique no botão abaixo para confirmar sua conta. Caso contrário, você pode ignorar este email.
 

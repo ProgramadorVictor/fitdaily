@@ -6,9 +6,9 @@
             <ul id="mensagens" class="col-12 list-unstyled">
                 @foreach($mensagens as $mensagem)
                     <li class="mensagem mb-2">
-                        <div class="col-12 background-black btn-border">
+                        <div class="col-12 bg-custom-black rounded-2">
                             <img class="chat-icone border border-2 border-dark mt-1 ms-1" src="{{asset( ($mensagem->usuario->imagens->imagem ? 'storage/'. $mensagem->usuario->imagens->imagem : 'logo.png') )}}" alt="">
-                            <strong class="text-white fw-bolder">{{ $mensagem->usuario->nome }} {{$mensagem->usuario->sobrenome}} - {{$mensagem->usuario->tipo_id == 1 ? 'Aluno' : 'Treinador'}}</strong><br>
+                            <strong class="text-white fw-bolder">{{ $mensagem->usuario->nome_completo }} - {{$mensagem->usuario->tipo->nome }}</strong><br>
                             <span class="text-white ps-5" style="word-break: break-all;" >{{ $mensagem->conteudo }}</span>
                         </div>
                     </li>
@@ -52,18 +52,6 @@
                         '<span class="text-white ps-5">' + mensagem + '</span>' +
                         '</div>' +
                         '</li>';
-                    //Não fui eu que fiz, estudar isso aqui!
-                    // var html = '<li class="mensagem mb-2">' +
-                    //     '<div class="col-12 background-black">';
-                    // if (imagem_existe != 'logo.png') {
-                    //     html += '<img class="chat-icone border border-2 border-dark" src="http://' + ip + ':8000/storage/' + imagem_existe + '" alt="">';
-                    // } else {
-                    //     html += '<img class="chat-icone border border-2 border-dark" src="http://' + ip + ':8000/'+ imagem_existe +'"';
-                    // }
-                    // html += '<strong class="text-white fw-bolder">' + usuario.nome + ' ' + usuario.sobrenome + ':</strong><br>' +
-                    //         '<span class="text-white ps-5">' + mensagem + '</span>' +
-                    //         '</div>' +
-                    //         '</li>';
                     $('#mensagens').append(html);
                 }
 

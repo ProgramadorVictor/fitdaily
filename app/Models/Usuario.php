@@ -3,32 +3,37 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Usuario extends Model
+class Usuario extends Authenticatable
 {
     use HasFactory;
-    protected $fillable = ['nome', 'sobrenome', 'email', 'cpf', 'celular', 'senha', 'nascimento', 'email_token', 'tipo_id', 'email_verificado'];
-    //tipo_id e email_verificado deve ser tirado posteriormente ao sair da fase de testes
-    protected $hidden = ['senha', 'created_at', 'updated_at', 'cpf', 'email_token',];
+    protected $table = 'usuarios';
+    protected $guarded = ['id'];
+    protected $fillable = ['nome_completo', 'email', 'cpf', 'cpf', 'celular', 'senha', 'nascimento'];
+    protected $casts = [];
+    protected $hidden = ['senha', 'created_at', 'updated_at', 'cpf', 'email_token'];
+    public function getAuthPassword(){
+        return $this->senha;
+    }
     public function tipo()
     {
-        return $this->belongsTo('App\Models\Tipo');
+        return $this->belongsTo(Tipo::class);
     }
     public function emails()
     {
-        return $this->hasOne('App\Models\Email');
+        return $this->hasOne(Email::class);
     }
     public function senhas()
     {
-        return $this->hasOne('App\Models\Senha');
+        return $this->hasOne(Senha::class);
     }
     public function imagens()
     {
-        return $this->hasOne('App\Models\Imagem');
+        return $this->hasOne(Imagem::class);
     }
     public function treino()
     {
-        return $this->hasMany('App\Models\Treino');
+        return $this->hasMany(Treino::class);
     }
 }

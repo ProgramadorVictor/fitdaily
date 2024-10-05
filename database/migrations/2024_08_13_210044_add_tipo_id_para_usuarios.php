@@ -14,7 +14,7 @@ class AddTipoIdParaUsuarios extends Migration
     public function up()
     {
         Schema::table('usuarios', function (Blueprint $table) {
-            $table->foreignId('tipo_id')->default(1)->after('id')->references('id')->on('tipos');
+            $table->foreignIdFor(\App\Models\Tipo::class)->default(1)->constrained()->after('id');
         });
     }
 

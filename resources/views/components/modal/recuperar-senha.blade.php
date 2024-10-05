@@ -1,30 +1,25 @@
 <div class="modal fade" id="modal-recuperar-senha" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header d-flex justify-content-between border-0 modal-border background-black">
+            <div class="modal-header bg-custom-black text-center">
                 <h5 class="modal-title text-white">Recuperação de senha</h5>
-                <button type="button" class="btn-close p-0 m-0" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body background-black pt-0">
-                <form method="post" action="{{route('email.recuperar-senha')}}" autocomplete="off">
+            <div class="modal-body bg-custom-black">
+                <form method="post" action="{{route('login.recuperar')}}" autocomplete="off">
                     @csrf
-                    <hr class="text-white">
-                    <p class="text-white">
-                        Olá, <br>
-                        Caso tenha esquecido a senha, digite o seu email abaixo. <br>
-                        Ao clica no botão <strong>(Enviar solicitação)</strong> <br>
-                        Será enviado um email de redefinição de senha! <br>
-                        Caso não tenha encontrado nada na caixa principal verifique a caixa de spam <br>
-                        <br>
-                        Atenciosamente, <br>
-                        {{config('app.name')}}
-                        
+                    <p class="text-white text-break mb-3 lead">
+                        <strong>Olá,</strong><br>
+                        Se você esqueceu sua senha, basta digitar seu e-mail abaixo. Ao clicar no botão <strong>(Enviar solicitação)</strong>, você receberá um e-mail para redefinir sua senha. Caso não encontre o e-mail na caixa principal, verifique também a pasta de spam.
                     </p>
+                    <p class="text-white text-break mb-0">
+                        Atenciosamente,<br>
+                        <strong>{{config('app.name')}}</strong>
+                    </p>                        
                     <div class="input-group flex-nowrap mb-4">
-                        <input name="email" type="email" class="form-control rounded-0 ps-2 fw-bolder border border-2 border-dark" placeholder="Email" aria-describedby="addon-wrapping">
+                        <input name="email" type="email" class="form-control fw-bolder border-dark" placeholder="Email">
                     </div>
                     <div class="d-flex justify-content-center">
-                        <button type="submit" class="col-12 btn btn-primary border-2 border-dark background-red btn-border">Enviar solicitação</button>
+                        <button type="submit" class="col-12 btn btn-primary border-2 border-dark bg-custom-red rounded-3">Enviar solicitação</button>
                     </div>
                 </form>
             </div>

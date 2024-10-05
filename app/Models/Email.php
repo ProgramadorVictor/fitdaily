@@ -13,4 +13,7 @@ class Email extends Model
     public function usuario(){
         return $this->belongsTo('App\Models\Usuario');
     }
+    public function scopeBuscarToken($query, $token){
+        $query->where('email_token',$token);
+    }
 }

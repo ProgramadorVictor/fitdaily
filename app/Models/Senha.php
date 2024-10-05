@@ -14,4 +14,7 @@ class Senha extends Model
     {
         return $this->belongsTo('App\Models\Usuario');
     }
+    // public function scopeBuscarToken($query, $token){
+    //     $query->where('senha_tok',$token);
+    // }
 }

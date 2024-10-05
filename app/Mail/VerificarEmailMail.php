@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class RecuperarSenhaMail extends Mailable
+class VerificarEmailMail extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -22,9 +22,9 @@ class RecuperarSenhaMail extends Mailable
     public function build()
     {
         $token = $this->token; $nome_completo = $this->nome_completo;
-        $url = 'http://localhost:8000/recuperar-senha?token='.$token;
-        return $this->markdown('mail.recuperar-senha')
+        $url = 'http://localhost:8000/verificar?token='.$token;
+        return $this->markdown('mail.verificar-email')
                     ->with(['url' => $url, 'nome' => $nome_completo])
-                    ->subject("Recuperação de senha");
+                    ->subject("Verifique o seu email na ".config('app.name'));
     }
 }

@@ -1,4 +1,4 @@
-@extends('template.login')
+@extends('template.auth')
 @section('titulo', 'Recuperar Senha')
 @section('body')
     <section class="col-12 d-flex justify-content-center px-2 px-md-0">
@@ -12,10 +12,10 @@
                     <p>Por favor, insira sua nova senha nos campos abaixo e confirme-a.</p>
                 </div>
                 <div class="col-12 px-2">
-                    <form method="post" action="{{route('login.senha-alterada')}}" autocomplete="off">
+                    <form method="post" action="{{route('login.alterar-senha')}}" autocomplete="off">
                         @method('patch')
                         @csrf
-                        <input type="hidden" name="token" value="{{$token}}">
+                        <input type="hidden" name="token" value="{{request()->get('token')}}">
                         <div class="input-group flex-nowrap mt-3">
                             <input id="senha_1" value="{{ old('senha') }}" name="senha" type="password" class="form-control rounded-0 ps-2 fw-bolder border border-2 border-dark input-senha" placeholder="Digite sua nova Senha">
                             <span class="p-1 border-dark input-group-text border-none bg-white border-radius-none border border-2 span-senhas" onclick="verSenha()">
