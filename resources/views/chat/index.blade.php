@@ -7,7 +7,7 @@
                 @foreach($mensagens as $mensagem)
                     <li class="mensagem mb-2">
                         <div class="col-12 bg-custom-black rounded-2">
-                            <img class="chat-icone border border-2 border-dark mt-1 ms-1" src="{{asset( ($mensagem->usuario->imagens->imagem ? 'storage/'. $mensagem->usuario->imagens->imagem : 'logo.png') )}}" alt="">
+                            <img class="chat-icone border border-2 border-dark mt-1 ms-1" src="{{asset( ($mensagem->usuario->imagem->imagem ? 'storage/'. $mensagem->usuario->imagens->imagem : 'logo.png') )}}" alt="">
                             <strong class="text-white fw-bolder">{{ $mensagem->usuario->nome_completo }} - {{$mensagem->usuario->tipo->nome }}</strong><br>
                             <span class="text-white ps-5" style="word-break: break-all;" >{{ $mensagem->conteudo }}</span>
                         </div>

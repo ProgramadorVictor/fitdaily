@@ -16,8 +16,7 @@ class ChatController extends Controller
     public function chat(){
         $mensagens = Mensagem::orderBy('created_at','desc')->take(20)->get();
         $mensagens = $mensagens->sortBy('created_at');
-        $opcoes = Menu::opcoes();
-        return view('chat.index', ['mensagens' => $mensagens, 'opcoes' => $opcoes]);
+        return view('chat.index', ['mensagens' => $mensagens]);
     }
     public function enviarMensagem(Request $request)
     {

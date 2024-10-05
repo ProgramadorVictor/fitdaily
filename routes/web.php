@@ -14,7 +14,7 @@ Route::get('/cadastro', [CadastroController::class, 'index'])->name('cadastro.in
 Route::post('/cadastro-realizado', [CadastroController::class, 'cadastrar'])->name('cadastro.cadastrar');
 
 Route::controller(LoginController::class)->group(function(){
-    Route::get('/login', 'index')->name('login.index');
+    Route::get('/login', 'index')->name('login');
     Route::post('/login-realizado', 'logar')->name('login.logar');
     Route::get('/logout', 'logout')->name('login.logout');
     Route::post('/recuperar', 'recuperar')->name('login.recuperar');
