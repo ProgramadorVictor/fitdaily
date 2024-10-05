@@ -4,17 +4,20 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Events\MensagemEvent;
+use App\Http\Menu;
 use Illuminate\Http\Request;
 use App\Models\Mensagem;
 use App\Models\Usuario;
 use App\Models\Imagem;
 use App\Models\Aviso;
+
 class ChatController extends Controller
 {
     public function chat(){
         $mensagens = Mensagem::orderBy('created_at','desc')->take(20)->get();
-        $mensagens = $mensagens->sortBy('created_at'); //sortByDesc
-        return view('chat.index', ['mensagens' => $mensagens]);
+        $mensagens = $mensagens->sortBy('created_at');
+        $opcoes = Menu::opcoes();
+        return view('chat.index', ['mensagens' => $mensagens, 'opcoes' => $opcoes]);
     }
     public function enviarMensagem(Request $request)
     {

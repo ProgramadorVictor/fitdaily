@@ -5,24 +5,11 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto gap-4">
-                <li class="nav-item">
-                    <a class="nav-link active fw-bolder text-white" href="{{route('tela-principal')}}">Chat</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active fw-bolder text-white" href="{{route('usuario.perfil')}}">Perfil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fw-bolder text-white" href="{{route('financeiro-pagamento.planos')}}">Planos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fw-bolder text-white" href="{{route('financeiro-pagamento.extratos')}}">Extratos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fw-bolder text-white" href="{{route('usuario.treinos')}}">Treinos</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link fw-bolder text-white" href="{{route('login.logout')}}">Logout</a>
-                </li>
+                @foreach($opcoes as $opcao)
+                    <li class="nav-item">
+                        <a class="nav-link active fw-bolder text-white" href="{{route($opcao['route'])}}">{{$opcao['nome']}}</a>
+                    </li>
+                @endforeach
             </ul>
         </div>
     </div>
