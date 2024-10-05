@@ -11,8 +11,8 @@
                     width: 40%;
                 }
                 .foto{
-                    width: 20rem;
-                    height: 20rem;
+                    width: 15rem;
+                    height: 15rem;
                     border-radius: 50%;
                 }
             }
@@ -41,7 +41,7 @@
                 Olá, Como vai? <br> {{auth()->user()->nome_completo}}
             </p>
         </div>
-        <div class="col-12 px-2">
+        <div class="ol-11 col-sm-8 col-md-6 col-lg-4 col-xl-3 px-2 m-auto">
             @component('usuario.form.form')
             @endcomponent
         </div>
