@@ -41,11 +41,9 @@
                 Olá, Como vai? <br> {{auth()->user()->nome_completo}}
             </p>
         </div>
-        <div class="col-6 d-flex justify-content-center align-items-center px-2">
-            <div class="col-12">
-                {{-- @component('usuario.form.form')
-                @endcomponent --}}
-            </div>
+        <div class="col-12 px-2">
+            @component('usuario.form.form')
+            @endcomponent
         </div>
     </section>
 @endsection

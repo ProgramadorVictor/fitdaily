@@ -20,6 +20,7 @@
         @yield('body')
     </main>
     <script src="{{ asset('js/alert.js') }}" defer></script>
+    <script src="{{ asset('js/mask.js') }}" defer></script>
     @yield('script')
 </body>
 </html>
