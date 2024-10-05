@@ -33,7 +33,7 @@
             <div id="foto-div" class="d-block col-6">
                 <div class="col-12 d-flex justify-content-center">
                     <button type="button" class="btn border-0 p-0 background-red d-flex justify-content-center icon-foto align-items-center">
-                        @if(isset(session('usuario')['imagem']) && session('usuario')['imagem'] != '')
+                        @if($imagem != null)
                             <img id="foto-perfil" src="{{ asset('storage/'. session('usuario')['imagem'])}}" class="icon-foto disable">
                         @else
                             <i id="foto-padrao" class="fa fa-user fa-3x text-white disable" aria-hidden="true"></i>
@@ -42,13 +42,13 @@
                 </div>
                 <div class="text-center">
                     <p class="text-white d-block m-b-1"> Olá, Como vai?</p>
-                    <p class="text-white d-block fw-bolder m-0">{{session('usuario')['nome'].' '.session('usuario')['sobrenome']}}</p>
+                    <p class="text-white d-block fw-bolder m-0">{{auth()->user()->nome_completo}}</p>
                 </div>
             </div>
             <div class="col-6 d-flex justify-content-center align-items-center px-2">
                 <div class="col-12">
-                    @component('usuario.form.form')
-                    @endcomponent
+                    {{-- @component('usuario.form.form')
+                    @endcomponent --}}
                 </div>
             </div>
         </div>

@@ -28,7 +28,7 @@ class Usuario extends Authenticatable
     {
         return $this->hasOne(Senha::class);
     }
-    public function imagens()
+    public function imagem()
     {
         return $this->hasOne(Imagem::class);
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Models\ExercicioTipo;
+use App\Models\Imagem;
 use App\Models\Treino;
 use App\Models\TreinoExercicio;
 use App\Models\Usuario;
@@ -15,7 +16,8 @@ use Illuminate\Support\Facades\Storage;
 class UsuarioController extends Controller
 {
     public function perfil (){
-        return view('usuario.perfil');
+        $imagem = Imagem::find(auth()->user()->id);
+        return view('usuario.perfil', ['imagem' => $imagem->imagem]);
     }
     public function atualizar(Request $req){
         $usuario = Usuario::find(session('usuario')['id']);

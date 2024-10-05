@@ -5,7 +5,7 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto gap-4">
-                @foreach($opcoes as $opcao)
+                @foreach(menu() as $opcao)
                     <li class="nav-item">
                         <a class="nav-link active fw-bolder text-white" href="{{route($opcao['route'])}}">{{$opcao['nome']}}</a>
                     </li>
