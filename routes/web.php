@@ -7,7 +7,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Front\ChatController;
 
 Route::get('/', function(){
-    return redirect()->route('login.index');
+    return redirect()->route('login');
 });
 
 Route::get('/cadastro', [CadastroController::class, 'index'])->name('cadastro.index');

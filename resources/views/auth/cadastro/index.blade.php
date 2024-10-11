@@ -11,7 +11,7 @@
             @endcomponent
         </main>
         <footer class="text-center">
-            <a href="{{route('login.index')}}" class="mx-2">Já tem uma conta?<br>Clique aqui para fazer login!</a>
+            <a href="{{route('login')}}" class="mx-2">Já tem uma conta?<br>Clique aqui para fazer login!</a>
         </footer>
     </section>
 @endsection

@@ -11,7 +11,8 @@ class CadastrarUsuarioRequest extends FormRequest
         return true;
     }
 
-    public function rules(){
+    public function rules()
+    {
         return [
             'nome_completo' => 'required',
             'email' => 'required|email|unique:usuarios,email|confirmed',
@@ -21,7 +22,8 @@ class CadastrarUsuarioRequest extends FormRequest
             'nascimento' => 'required|date_format:d/m/Y|before_or_equal:' . now()->format('d/m/Y'),
         ];
     }
-    public function messages(){
+    public function messages()
+    {
         return [
             'nome_completo.required' => 'O campo nome é requerido.',
             'email.required' => 'O campo email é requerido.',

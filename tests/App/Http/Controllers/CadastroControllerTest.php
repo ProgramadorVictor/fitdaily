@@ -35,7 +35,7 @@ class CadastroControllerTest extends TestCase
         $response = $this->post('/cadastro-realizado', $dados);
 
         // dd($response);
-        $response->assertRedirect(route('login.index'));
+        $response->assertRedirect(route('login'));
         
         $response->assertSessionHas('alert', [
             'mensagem' => 'Cadastro realizado com sucesso!',
