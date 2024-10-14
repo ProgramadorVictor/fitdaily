@@ -21,12 +21,17 @@ class CadastroService{
         $dados['nascimento'] = format_data($dados['nascimento']);
         $dados['senha'] = Hash::make($dados['senha']);
         try{
-            DB::transaction(function() use ($dados) {
+            DB::transaction(function() use ($dados, &$email) {
                 $usuario = $this->usuarioRepository->cadastrarDados($dados);
-                $this->emailRepository->cadastrarDados($usuario->only(['id']));
+                $email = $this->emailRepository->cadastrarDados($usuario->only(['id']));
                 $this->senhaRepository->cadastrarDados($usuario->only(['id']));
             });
-            event(new VerificarEmailEvent($dados));
+            $event_dados = [
+                'nome_completo' => $dados['nome_completo'],
+                'email' => $dados['email'],
+                'token' => $email->email_token,
+            ];
+            event(new VerificarEmailEvent($event_dados));
             Log::info('Status: Usuario cadastrado com sucesso!');
             return true;
         }catch(QueryException $e){
