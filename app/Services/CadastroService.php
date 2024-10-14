@@ -23,8 +23,8 @@ class CadastroService{
         try{
             DB::transaction(function() use ($dados, &$email) {
                 $usuario = $this->usuarioRepository->cadastrarDados($dados);
-                $email = $this->emailRepository->cadastrarDados($usuario->only(['id']));
-                $this->senhaRepository->cadastrarDados($usuario->only(['id']));
+                $email = $this->emailRepository->findOrCreate($usuario->only(['id']));
+                $this->senhaRepository->findOrCreate($usuario->only(['id']));
             });
             $event_dados = [
                 'nome_completo' => $dados['nome_completo'],

@@ -4,14 +4,14 @@ namespace App\Repository;
 
 use App\Models\Email;
 use Illuminate\Support\Str;
+use App\Repository\Repository;
 
-class EmailRepository{
+class EmailRepository implements Repository{
     public function __construct(
         protected Email $email
     ){}
-    public function cadastrarDados($dados)
-    {
-        return $this->email::create([
+    public function findOrCreate($dados){
+        return $this->email::firstOrCreate([
             'usuario_id' => $dados['id'],
             'email_token' => Str::random(60)
         ]);
