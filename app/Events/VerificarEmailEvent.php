@@ -13,9 +13,13 @@ use Illuminate\Queue\SerializesModels;
 class VerificarEmailEvent
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public $dados;
-    public function __construct($dados)
+    public $email;
+    public $token;
+    public $nome_completo;
+    public function __construct($nome_completo, $email, $email_token)
     {
-        $this->dados = $dados;
+        $this->nome_completo = $nome_completo;
+        $this->email         = $email;
+        $this->token         = $email_token;
     }
 }

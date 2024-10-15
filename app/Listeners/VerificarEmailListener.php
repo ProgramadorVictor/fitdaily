@@ -13,7 +13,6 @@ class VerificarEmailListener implements ShouldQueue
     use InteractsWithQueue;
     public function handle(VerificarEmailEvent $event)
     {
-        $email = $event->dados['email']; $nome_completo = $event->dados['nome_completo']; $token = $event->dados['token'];
-        Mail::to($email)->send(new VerificarEmailMail($nome_completo, $token));
+        Mail::to($event->email)->send(new VerificarEmailMail($event->nome_completo, $event->token));
     }
 }
