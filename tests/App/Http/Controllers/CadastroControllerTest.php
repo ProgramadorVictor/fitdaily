@@ -33,7 +33,7 @@ class CadastroControllerTest extends TestCase
         ];
 
         $response = $this->post('/cadastro-realizado', $dados);
-        
+
         $response->assertRedirect(route('login'));
         
         $response->assertSessionHas('alert', [
@@ -55,8 +55,13 @@ class CadastroControllerTest extends TestCase
             'email' => $dados['email'],
             'token' => $email->email_token,
         ];
+
         Event::assertDispatched(VerificarEmailEvent::class, function ($event) use ($dados_esperados) {
-            return $event->dados === $dados_esperados;
+            return (
+                $event->email         === $dados_esperados['email'] &&
+                $event->token         === $dados_esperados['token'] &&
+                $event->nome_completo === $dados_esperados['nome_completo']
+            );
         });
 
     }
