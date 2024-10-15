@@ -17,16 +17,22 @@ class CadastroService{
         protected UsuarioRepository $usuarioRepository,
         protected SenhaRepository $senhaRepository
     ){}
-    public function prepararDados($dados){
+    
+    public function cadastrarUsuario($dados){
         $dados['nascimento'] = format_data($dados['nascimento']);
         $dados['senha'] = Hash::make($dados['senha']);
         try{
             DB::transaction(function() use (&$dados) {
-                $usuario_id = $this->usuarioRepository::create($dados)->id;
-                $dados['usuario_id']  = $usuario_id;
-                $dados['email_token'] = $this->emailRepository::create($dados)->email_token;
+                $usuario = $this->usuarioRepository::create($dados);
+
+                $dados['usuario_id'] = $usuario->id;
+
+                $this->emailRepository::create($dados);
                 $this->senhaRepository::create($dados);
             });
+
+            $dados['email_token'] = $this->emailRepository::findBy('usuario_id', '=', $dados['usuario_id'])->email_token;
+            
             event(new VerificarEmailEvent($dados['nome_completo'], $dados['email'], $dados['email_token']));
             Log::info('Status: Usuario cadastrado com sucesso!');
             return true;

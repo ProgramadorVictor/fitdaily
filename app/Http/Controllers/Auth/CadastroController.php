@@ -12,11 +12,13 @@ class CadastroController extends Controller
     public function __construct(
         protected CadastroService $cadastroService
     ){}
+    
     public function index(){
         return view('auth.cadastro.index');
     }
+    
     public function cadastrar(CadastrarUsuarioRequest $request){
-        if($this->cadastroService->prepararDados($request->validated())){
+        if($this->cadastroService->cadastrarUsuario($request->validated())){
             return Message::success('Cadastro realizado com sucesso!', 'login');
         }
         return Message::exception('Ocorreu um erro inesperado, por favor reporte ao email contato.fitdaily@gmail.com', 'cadastro.index');

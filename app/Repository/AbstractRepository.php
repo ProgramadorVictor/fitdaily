@@ -18,4 +18,9 @@ abstract class AbstractRepository implements RepositoryInterface
     {
         return self::loadModel()::query()->create($dados);
     }
+
+    public static function findBy($coluna, $operador, $valor)
+    {
+        return self::loadModel()::query()->where($coluna, $operador, $valor)->first();
+    }
 }
