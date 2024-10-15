@@ -33,8 +33,7 @@ class CadastroControllerTest extends TestCase
         ];
 
         $response = $this->post('/cadastro-realizado', $dados);
-
-        // dd($response);
+        
         $response->assertRedirect(route('login'));
         
         $response->assertSessionHas('alert', [
@@ -60,9 +59,6 @@ class CadastroControllerTest extends TestCase
             return $event->dados === $dados_esperados;
         });
 
-        // Bus::assertDispatched(EnviarVerificacaoDeEmailJob::class, function ($job) use ($dados_esperados) {
-        //     return $job->dados === $dados_esperados;
-        // });
     }
     public function testCadastroControllerCadastrarDadosInvalidos(){
         $dados_invalidos = [
